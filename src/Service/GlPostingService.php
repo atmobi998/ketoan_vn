@@ -49,7 +49,7 @@ class GlPostingService
     protected function hasPosted(string $refType, $refId): bool
     {
         $tbl = TableRegistry::getTableLocator()->get('JournalEntries');
-        return $tbl->find()->where(['reference_type' => $refType, 'reference_id like' => $refId.' %'])->count() > 0;
+        return $tbl->find()->where(['reference_type' => $refType, 'reference_id' => $refId])->count() > 0;
     }
 
     protected function getInventoryAccountCodeByCategory(int $catId): string
@@ -108,7 +108,7 @@ class GlPostingService
                 $je->status = 'posted';
                 $je->accounting_period_id = $periodId;
                 $je->reference_type = 'GoodsReceipt';
-                $je->reference_id = (string)$grId.' ('.$gr->gr_number.')';
+                $je->reference_id = (string)$grId;
                 $je->created_by = 1;
 
                 if (!$jeTbl->save($je)) {
@@ -158,7 +158,7 @@ class GlPostingService
 
     public function postDeliveryNote(int $dnId, bool $force = false): array
     {
-        if (!$force && $this->hasPosted('DeliveryNote', $dnId)) {
+        if (!$force && $this->hasPosted('DeliveryNote_COGS', $dnId)) {
             return ['status' => 'skipped', 'message' => 'Đã hạch toán giá vốn rồi'];
         }
         $dnTbl = TableRegistry::getTableLocator()->get('DeliveryNotes');
@@ -199,8 +199,8 @@ class GlPostingService
                 $je->total_credit = $dn->total_amount;
                 $je->status = 'posted';
                 $je->accounting_period_id = $periodId;
-                $je->reference_type = 'DeliveryNote';
-                $je->reference_id = (string)$dnId.' ('.$dn->dn_number.')';
+                $je->reference_type = 'DeliveryNote_COGS';
+                $je->reference_id = (string)$dnId;
                 $je->created_by = 1;
 
                 $jeTbl->saveOrFail($je);
@@ -237,6 +237,12 @@ class GlPostingService
         if (!$force && $this->hasPosted('SalesInvoice', $siId)) {
             return ['status' => 'skipped', 'message' => 'Đã hạch toán rồi'];
         }
+        $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
+        $payrolls = $payrollTbl->find()->where(['status IN' => ['approved','paid']])->all();
+        foreach ($payrolls as $pr) {
+            $results[] = ['type' => 'Payroll', 'id' => $pr->id, 'result' => $this->postPayroll($pr->id)];
+        }
+
         $siTbl = TableRegistry::getTableLocator()->get('SalesInvoices');
         $si = $siTbl->get($siId);
 
@@ -271,7 +277,7 @@ class GlPostingService
                 $je->status = 'posted';
                 $je->accounting_period_id = $periodId;
                 $je->reference_type = 'SalesInvoice';
-                $je->reference_id = (string)$siId.' ('.$si->invoice_number.')';
+                $je->reference_id = (string)$siId;
                 $je->created_by = 1;
 
                 $jeTbl->saveOrFail($je);
@@ -363,7 +369,7 @@ class GlPostingService
                 $je->status = 'posted';
                 $je->accounting_period_id = $periodId;
                 $je->reference_type = 'PurchaseInvoice';
-                $je->reference_id = (string)$piId.' ('.$pi->invoice_number.')';
+                $je->reference_id = (string)$piId;
                 $je->created_by = 1;
                 $jeTbl->saveOrFail($je);
 
@@ -405,6 +411,200 @@ class GlPostingService
         }
     }
 
+
+    protected function getExpenseAccountByDepartment(?int $deptId): string
+    {
+        // Map phòng ban -> TK chi phí
+        // 1: Ban Giám Đốc, 2: Hành chính -> 6421
+        // 3: Kỹ thuật, 6,7,8: gián tiếp -> 6271 hoặc 642
+        // 4: Sản xuất -> 622
+        // 5: Kinh doanh -> 6411
+        return match($deptId) {
+            4 => '622',      // Sản xuất - CP NCTT
+            5 => '6411',     // Bán hàng - CP nhân viên BH (fallback 641)
+            1,2 => '6421',   // QLDN - CP nhân viên QLDN
+            3,6,7,8 => '6271', // SXC - CP nhân viên PB (fallback 627)
+            default => '6421',
+        };
+    }
+
+    /**
+     * POST BẢNG LƯƠNG - Payrolls
+     * Nợ 622/627/641/642 : total_amount (tổng lương gross)
+     * Có 334 : total_net (thực lĩnh)
+     * Có 3383, 3384, 3386 : insurance_deduction (phân bổ)
+     * Có 3335 : tax_deduction
+     */
+    public function postPayroll(int $payrollId, bool $force = false): array
+    {
+        if (!$force && $this->hasPosted('Payroll', $payrollId)) {
+            return ['status' => 'skipped', 'message' => 'Đã hạch toán lương rồi'];
+        }
+
+        $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
+        $payroll = $payrollTbl->get($payrollId);
+
+        if ($payroll->status !== 'approved' && $payroll->status !== 'paid') {
+            return ['status' => 'error', 'message' => 'Bảng lương chưa duyệt'];
+        }
+
+        // Xác định kỳ kế toán từ tháng/năm bảng lương
+        $dateStr = sprintf('%04d-%02d-01', $payroll->payroll_year, $payroll->payroll_month);
+        $periodId = $this->getPeriodIdByDate($dateStr);
+        $entryNumber = $this->genEntryNumber('LUONG', $dateStr);
+
+        // TK chi phí theo phòng ban
+        $expenseCode = $this->getExpenseAccountByDepartment($payroll->department_id);
+        $accExpense = $this->getAccountIdByCode($expenseCode);
+        // Fallback nếu TK chi tiết không có
+        if (!$accExpense) {
+            $fallback = match($expenseCode) {
+                '6411' => '641',
+                '6271' => '627',
+                '6421' => '642',
+                default => '642',
+            };
+            $accExpense = $this->getAccountIdByCode($fallback);
+        }
+
+        $acc334 = $this->getAccountIdByCode('3341') ?? $this->getAccountIdByCode('334');
+        $acc3383 = $this->getAccountIdByCode('3383');
+        $acc3384 = $this->getAccountIdByCode('3384');
+        $acc3386 = $this->getAccountIdByCode('3386');
+        $acc338 = $this->getAccountIdByCode('338');
+        $acc3335 = $this->getAccountIdByCode('3335');
+
+        if (!$accExpense || !$acc334) {
+            return ['status' => 'error', 'message' => "Thiếu TK chi phí $expenseCode hoặc 334"];
+        }
+
+        $jeTbl = TableRegistry::getTableLocator()->get('JournalEntries');
+        $jelTbl = TableRegistry::getTableLocator()->get('JournalEntryLines');
+        $conn = $jeTbl->getConnection();
+
+        try {
+            return $conn->transactional(function ($conn) use ($jeTbl, $jelTbl, $payroll, $periodId, $entryNumber, $accExpense, $acc334, $acc3383, $acc3384, $acc3386, $acc338, $acc3335, $payrollId) {
+                $je = $jeTbl->newEmptyEntity();
+                $je->entry_number = $entryNumber;
+                $je->entry_date = sprintf('%04d-%02d-%02d', $payroll->payroll_year, $payroll->payroll_month, 28);
+                $je->accounting_date = $je->entry_date;
+                $je->description = "Lương T{$payroll->payroll_month}/{$payroll->payroll_year} - {$payroll->payroll_code} ({$payroll->total_employees} NV)";
+                $je->total_debit = $payroll->total_amount;
+                $je->total_credit = $payroll->total_amount;
+                $je->status = 'posted';
+                $je->accounting_period_id = $periodId;
+                $je->reference_type = 'Payroll';
+                $je->reference_id = (string)$payrollId;
+                $je->created_by = 1;
+
+                $jeTbl->saveOrFail($je);
+
+                // Nợ chi phí
+                $lineDr = $jelTbl->newEntity([
+                    'journal_entry_id' => $je->id,
+                    'chart_of_account_id' => $accExpense,
+                    'debit' => $payroll->total_amount,
+                    'credit' => 0,
+                    'description' => "Chi phí lương {$payroll->payroll_code}",
+                ]);
+                $jelTbl->saveOrFail($lineDr);
+
+                // Có 334 - thực lĩnh
+                if ($payroll->total_net > 0) {
+                    $line334 = $jelTbl->newEntity([
+                        'journal_entry_id' => $je->id,
+                        'chart_of_account_id' => $acc334,
+                        'debit' => 0,
+                        'credit' => $payroll->total_net,
+                        'description' => "Lương phải trả {$payroll->payroll_code}",
+                    ]);
+                    $jelTbl->saveOrFail($line334);
+                }
+
+                // Có BHXH - phân bổ 70/20/10 nếu có chi tiết, không thì gộp vào 3383
+                if ($payroll->insurance_deduction > 0) {
+                    if ($acc3383 && $acc3384 && $acc3386) {
+                        // Tỉ lệ VN: BHXH 17.5% DN, BHYT 3%, BHTN 1% - nhưng ở đây chỉ có phần trừ NLĐ
+                        // Tạm chia: 3383 70%, 3384 20%, 3386 10% cho phần khấu trừ NLĐ
+                        $ins = (float)$payroll->insurance_deduction;
+                        $l3383 = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $acc3383,
+                            'debit' => 0,
+                            'credit' => round($ins * 0.70, 2),
+                            'description' => "BHXH trừ lương {$payroll->payroll_code}",
+                        ]);
+                        $l3384 = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $acc3384,
+                            'debit' => 0,
+                            'credit' => round($ins * 0.20, 2),
+                            'description' => "BHYT trừ lương {$payroll->payroll_code}",
+                        ]);
+                        $l3386 = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $acc3386,
+                            'debit' => 0,
+                            'credit' => round($ins * 0.10, 2),
+                            'description' => "BHTN trừ lương {$payroll->payroll_code}",
+                        ]);
+                        $jelTbl->saveOrFail($l3383);
+                        $jelTbl->saveOrFail($l3384);
+                        $jelTbl->saveOrFail($l3386);
+                    } else {
+                        $acc = $acc3383 ?? $acc338 ?? $acc334;
+                        $line338 = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $acc,
+                            'debit' => 0,
+                            'credit' => $payroll->insurance_deduction,
+                            'description' => "Bảo hiểm trừ lương {$payroll->payroll_code}",
+                        ]);
+                        $jelTbl->saveOrFail($line338);
+                    }
+                }
+
+                // Có thuế TNCN
+                if ($payroll->tax_deduction > 0 && $acc3335) {
+                    $lineTax = $jelTbl->newEntity([
+                        'journal_entry_id' => $je->id,
+                        'chart_of_account_id' => $acc3335,
+                        'debit' => 0,
+                        'credit' => $payroll->tax_deduction,
+                        'description' => "Thuế TNCN {$payroll->payroll_code}",
+                    ]);
+                    $jelTbl->saveOrFail($lineTax);
+                }
+
+                return ['status' => 'ok', 'entry_id' => $je->id, 'entry_number' => $entryNumber];
+            });
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Hạch toán tổng hợp lương theo tháng (gộp tất cả phòng ban)
+     */
+    public function postPayrollMonth(int $month, int $year, bool $force = false): array
+    {
+        $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
+        $payrolls = $payrollTbl->find()->where(['payroll_month' => $month, 'payroll_year' => $year, 'status IN' => ['approved','paid']])->all();
+
+        if ($payrolls->isEmpty()) {
+            return ['status' => 'error', 'message' => "Không có bảng lương T$month/$year"];
+        }
+
+        $results = [];
+        foreach ($payrolls as $p) {
+            $results[] = ['id' => $p->id, 'code' => $p->payroll_code, 'result' => $this->postPayroll($p->id, $force)];
+        }
+
+        $success = count(array_filter($results, fn($r) => $r['result']['status'] === 'ok'));
+        return ['status' => 'ok', 'message' => "Đã hạch toán $success/".count($results)." bảng lương T$month/$year", 'details' => $results];
+    }
+
+
     public function postAllMissing(): array
     {
         $results = [];
@@ -423,6 +623,12 @@ class GlPostingService
         foreach ($pis as $pi) {
             $results[] = ['type' => 'PurchaseInvoice', 'id' => $pi->id, 'result' => $this->postPurchaseInvoice($pi->id)];
         }
+        $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
+        $payrolls = $payrollTbl->find()->where(['status IN' => ['approved','paid']])->orderBy(['Payrolls.accounting_period_id' => 'ASC'])->all();
+        foreach ($payrolls as $pr) {
+            $results[] = ['type' => 'Payroll', 'id' => $pr->id, 'result' => $this->postPayroll($pr->id)];
+        }
+
         $siTbl = TableRegistry::getTableLocator()->get('SalesInvoices');
         $sis = $siTbl->find()->where(['status IN' => ['approved','paid']])->all();
         foreach ($sis as $si) {

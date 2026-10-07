@@ -45,12 +45,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="card bg-primary text-white mb-3">
+                <div class="card-header">Bảng lương</div>
+                <div class="card-body">
+                    <h2><?= $prUnposted ?></h2>
+                    <small>chưa hạch toán</small><br>
+                    <small>Đã HT: <?= $postedCounts['Payroll'] ?></small>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="card mb-4 border-danger">
         <div class="card-body text-center">
             <?php
-            $totalUnposted = $grUnposted + $dnUnposted + $piUnposted + $siUnposted;
+            $totalUnposted = $grUnposted + $dnUnposted + $piUnposted + $siUnposted + $prUnposted;
             if ($totalUnposted > 0):
             ?>
                 <h4>Có <span class="badge bg-danger"><?= $totalUnposted ?></span> chứng từ chưa vào sổ cái</h4>

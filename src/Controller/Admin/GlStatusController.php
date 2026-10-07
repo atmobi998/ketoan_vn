@@ -3,7 +3,6 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Service\GlPostingService;
-use Cake\ORM\TableRegistry;
 
 class GlStatusController extends AppController
 {
@@ -13,13 +12,13 @@ class GlStatusController extends AppController
         $dnTbl = $this->fetchTable('DeliveryNotes');
         $piTbl = $this->fetchTable('PurchaseInvoices');
         $siTbl = $this->fetchTable('SalesInvoices');
+        $prTbl = $this->fetchTable('Payrolls');
         $jeTbl = $this->fetchTable('JournalEntries');
 
-        // Đếm chưa hạch toán - dùng NOT IN subquery (tương thích CakePHP 5)
         $grPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'GoodsReceipt']);
         $grUnposted = $grTbl->find()->where(['GoodsReceipts.status' => 'approved', 'GoodsReceipts.id NOT IN' => $grPostedIds])->count();
 
-        $dnPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'DeliveryNote']);
+        $dnPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'DeliveryNote_COGS']);
         $dnUnposted = $dnTbl->find()->where(['DeliveryNotes.status' => 'approved', 'DeliveryNotes.id NOT IN' => $dnPostedIds])->count();
 
         $piPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'PurchaseInvoice']);
@@ -28,28 +27,29 @@ class GlStatusController extends AppController
         $siPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'SalesInvoice']);
         $siUnposted = $siTbl->find()->where(['SalesInvoices.status IN' => ['approved','paid'], 'SalesInvoices.id NOT IN' => $siPostedIds])->count();
 
-        // Tổng đã hạch toán
+        $prPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'Payroll']);
+        $prUnposted = $prTbl->find()->where(['Payrolls.status IN' => ['approved','paid'], 'Payrolls.id NOT IN' => $prPostedIds])->count();
+
         $postedCounts = [
             'GoodsReceipt' => $jeTbl->find()->where(['reference_type' => 'GoodsReceipt'])->count(),
-            'DeliveryNote' => $jeTbl->find()->where(['reference_type' => 'DeliveryNote'])->count(),
+            'DeliveryNote_COGS' => $jeTbl->find()->where(['reference_type' => 'DeliveryNote_COGS'])->count(),
             'PurchaseInvoice' => $jeTbl->find()->where(['reference_type' => 'PurchaseInvoice'])->count(),
             'SalesInvoice' => $jeTbl->find()->where(['reference_type' => 'SalesInvoice'])->count(),
+            'Payroll' => $jeTbl->find()->where(['reference_type' => 'Payroll'])->count(),
         ];
 
-        // 10 bút toán gần nhất
-        $recentEntries = $jeTbl->find()
-            ->orderBy(['JournalEntries.created' => 'DESC'])
-            ->limit(15)
-            ->toArray();
+        $recentEntries = $jeTbl->find()->orderBy(['JournalEntries.created' => 'DESC'])->limit(15)->toArray();
 
-        // Thống kê tổng tiền chưa hạch toán (đơn giản: sum tất cả approved, trừ đi đã post sẽ tính sau)
         $grTotalQuery = $grTbl->find()->where(['GoodsReceipts.status' => 'approved', 'GoodsReceipts.id NOT IN' => $grPostedIds]);
         $grTotal = $grTotalQuery->select(['total' => $grTotalQuery->func()->sum('GoodsReceipts.grand_total')])->first();
 
         $dnTotalQuery = $dnTbl->find()->where(['DeliveryNotes.status' => 'approved', 'DeliveryNotes.id NOT IN' => $dnPostedIds]);
         $dnTotal = $dnTotalQuery->select(['total' => $dnTotalQuery->func()->sum('DeliveryNotes.total_amount')])->first();
 
-        $this->set(compact('grUnposted','dnUnposted','piUnposted','siUnposted','postedCounts','recentEntries','grTotal','dnTotal'));
+        $prTotalQuery = $prTbl->find()->where(['Payrolls.status IN' => ['approved','paid'], 'Payrolls.id NOT IN' => $prPostedIds]);
+        $prTotal = $prTotalQuery->select(['total' => $prTotalQuery->func()->sum('Payrolls.total_amount')])->first();
+
+        $this->set(compact('grUnposted','dnUnposted','piUnposted','siUnposted','prUnposted','postedCounts','recentEntries','grTotal','dnTotal','prTotal'));
     }
 
     public function postAll()
@@ -75,6 +75,23 @@ class GlStatusController extends AppController
             $this->Flash->success($msg);
         }
 
+        return $this->redirect(['action' => 'index']);
+    }
+
+    public function postPayrollMonth()
+    {
+        $this->request->allowMethod(['post']);
+        $month = (int)$this->request->getData('month', date('n'));
+        $year = (int)$this->request->getData('year', date('Y'));
+        
+        $service = new GlPostingService();
+        $result = $service->postPayrollMonth($month, $year, false);
+        
+        if ($result['status'] === 'ok') {
+            $this->Flash->success($result['message']);
+        } else {
+            $this->Flash->error($result['message']);
+        }
         return $this->redirect(['action' => 'index']);
     }
 }
