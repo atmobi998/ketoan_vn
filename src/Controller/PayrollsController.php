@@ -202,7 +202,7 @@ class PayrollsController extends AppController
                     $erecord = $prdettable->newEmptyEntity();
                     $erecord = $prdettable->patchEntity($erecord, $empproll);
                     $prdettable->save($erecord);
-                    $total_amount+=$allowance+$overtime_amount+$bonus;
+                    $total_amount+=$basic_salary+$allowance+$overtime_amount+$bonus;
                     $total_deduction+=($insurance_deduction+$tax_deduction+$other_deduction);
                     $total_net+=$net_salary;
                     $total_insurance_deduction+=$insurance_deduction;
