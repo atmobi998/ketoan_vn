@@ -8,7 +8,7 @@
         <tr><th>quantity_actual</th><td><?= h($record->quantity_actual ?? '') ?></td></tr>
         <tr><th>quantity_diff</th><td><?= h($record->quantity_diff ?? '') ?></td></tr>
         <tr><th>đơn giá</th><td><?= h($record->unit_price ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>số tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>
     </table>

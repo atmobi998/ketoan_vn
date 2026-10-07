@@ -12,7 +12,7 @@
                 <th>cash_receipt_id</th>
                 <th>diễn giải</th>
                 <th>Tài khoản KT</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>trung tâm chi phí</th>
                 <th>TGian Tạo</th>
                 <th>Tác vụ</th>

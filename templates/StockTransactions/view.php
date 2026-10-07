@@ -8,7 +8,7 @@
         <tr><th>warehouse_id</th><td><?= h($record->warehouse_id ?? '') ?></td></tr>
         <tr><th>warehouse_to_id</th><td><?= h($record->warehouse_to_id ?? '') ?></td></tr>
         <tr><th>mã sản phẩm</th><td><?= h($record->product_id ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->quantity ?? '') ?></td></tr>
+        <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>đơn giá</th><td><?= h($record->unit_price ?? '') ?></td></tr>
         <tr><th>tổng số tiền</th><td><?= h($record->total_amount ?? '') ?></td></tr>
         <tr><th>loại tham chiếu</th><td><?= h($record->reference_type ?? '') ?></td></tr>

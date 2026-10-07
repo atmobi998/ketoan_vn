@@ -14,7 +14,7 @@
                 <th>số lượng</th>
                 <th>đơn vị</th>
                 <th>đơn giá</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>Tác vụ</th>
         </tr></thead>
         <tbody>

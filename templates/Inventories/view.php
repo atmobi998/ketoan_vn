@@ -4,7 +4,7 @@
         <tr><th>Mã ID</th><td><?= h($record->id ?? '') ?></td></tr>
         <tr><th>mã sản phẩm</th><td><?= h($record->product_id ?? '') ?></td></tr>
         <tr><th>warehouse_id</th><td><?= h($record->warehouse_id ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->quantity ?? '') ?></td></tr>
+        <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>Số lượng hiện có</th><td><?= h($record->quantity_available ?? '') ?></td></tr>
         <tr><th>số lượng đặt trước</th><td><?= h($record->quantity_reserved ?? '') ?></td></tr>
         <tr><th>giá nhập gần nhất</th><td><?= h($record->last_import_price ?? '') ?></td></tr>

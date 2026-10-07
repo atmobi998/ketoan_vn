@@ -11,7 +11,7 @@
                 <th>Mã ID</th>
                 <th>mã lệnh sản xuất</th>
                 <th>cost_type</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>diễn giải</th>
                 <th>trung tâm chi phí</th>
                 <th>TGian Tạo</th>

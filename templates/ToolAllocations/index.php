@@ -14,7 +14,7 @@
                 <th>phòng ban</th>
                 <th>ngày phân bổ</th>
                 <th>số lượng</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>Tác vụ</th>
         </tr></thead>
         <tbody>

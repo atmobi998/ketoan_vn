@@ -13,7 +13,7 @@
                 <th>mã sản phẩm</th>
                 <th>số lượng</th>
                 <th>đơn giá</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>MS LOT</th>
                 <th>Tác vụ</th>
         </tr></thead>

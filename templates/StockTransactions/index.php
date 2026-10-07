@@ -25,7 +25,7 @@
                 <th>kho</th>
                 <th>kho đích</th>
                 <th>sản phẩm</th>
-                <th>thành tiền</th>
+                <th>số lượng</th>
                 <th>đơn vị</th>
                 <th>Tác vụ</th>
         </tr></thead>

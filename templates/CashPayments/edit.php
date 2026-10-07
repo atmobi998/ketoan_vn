@@ -35,7 +35,7 @@
                 <th>cash_payment</th>
                 <th>diễn giải</th>
                 <th>Tài khoản KT</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>cost_center</th>
                 <th>TGian Tạo</th>
                 <th>Tác vụ</th>

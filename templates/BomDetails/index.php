@@ -7,7 +7,7 @@
                 <th>Mã ID</th>
                 <th>BOM</th>
                 <th>nguyên vật liệu</th>
-                <th>thành tiền</th>
+                <th>số lượng</th>
                 <th>đơn vị</th>
                 <th>tỷ lệ lãng phí</th>
                 <th>chi phí mỗi đơn vị</th>

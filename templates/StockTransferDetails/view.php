@@ -4,7 +4,7 @@
         <tr><th>Mã ID</th><td><?= h($record->id ?? '') ?></td></tr>
         <tr><th>stock_transfer</th><td><?= h($record->stock_transfer->full_name ?? '') ?></td></tr>
         <tr><th>sản phẩm</th><td><?= h($record->product->name ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->quantity ?? '') ?></td></tr>
+        <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>đơn vị</th><td><?= h($record->unit->name ?? '') ?></td></tr>
         <tr><th>notes</th><td><?= h($record->notes ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

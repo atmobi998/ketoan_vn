@@ -5,7 +5,7 @@
         <tr><th>Mã Code</th><td><?= h($record->code ?? '') ?></td></tr>
         <tr><th>Tên</th><td><?= h($record->name ?? '') ?></td></tr>
         <tr><th>tool_category_id</th><td><?= h($record->tool_category_id ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->quantity ?? '') ?></td></tr>
+        <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>unit_id</th><td><?= h($record->unit_id ?? '') ?></td></tr>
         <tr><th>đơn giá</th><td><?= h($record->unit_price ?? '') ?></td></tr>
         <tr><th>total_value</th><td><?= h($record->total_value ?? '') ?></td></tr>

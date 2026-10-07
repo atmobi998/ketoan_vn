@@ -4,7 +4,7 @@
         <tr><th>Mã ID</th><td><?= h($record->id ?? '') ?></td></tr>
         <tr><th>bom_id</th><td><?= h($record->bom_id ?? '') ?></td></tr>
         <tr><th>material_id</th><td><?= h($record->material_id ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->quantity ?? '') ?></td></tr>
+        <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>unit_id</th><td><?= h($record->unit_id ?? '') ?></td></tr>
         <tr><th>tỷ lệ lãng phí</th><td><?= h($record->waste_rate ?? '') ?></td></tr>
         <tr><th>chi phí mỗi đơn vị</th><td><?= h($record->unit_cost ?? '') ?></td></tr>

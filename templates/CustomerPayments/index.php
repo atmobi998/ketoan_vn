@@ -22,7 +22,7 @@
                 <th>Mã thanh tóan</th>
                 <th>ngày thanh toán</th>
                 <th>khách hàng</th>
-                <th>thành tiền</th>
+                <th>số tiền</th>
                 <th>tài khoản ngân hàng</th>
                 <th>phương thức thanh toán</th>
                 <th>Tác vụ</th>

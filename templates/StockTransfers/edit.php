@@ -23,7 +23,7 @@
                 <th>Mã ID</th>
                 <th>stock_transfer</th>
                 <th>sản phẩm</th>
-                <th>thành tiền</th>
+                <th>số lượng</th>
                 <th>đơn vị</th>
                 <th>notes</th>
                 <th>TGian Tạo</th>

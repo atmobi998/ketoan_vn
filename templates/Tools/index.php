@@ -8,7 +8,7 @@
                 <th>Mã Code</th>
                 <th>Tên</th>
                 <th>nhóm công cụ</th>
-                <th>thành tiền</th>
+                <th>số lượng</th>
                 <th>đơn vị</th>
                 <th>đơn giá</th>
                 <th>Tác vụ</th>

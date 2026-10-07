@@ -6,7 +6,7 @@
         <tr><th>mã sản phẩm</th><td><?= h($record->product_id ?? '') ?></td></tr>
         <tr><th>sô lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>đơn giá</th><td><?= h($record->unit_price ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>số tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>MS LOT</th><td><?= h($record->lot_number ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>

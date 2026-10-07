@@ -6,7 +6,7 @@
         <tr><th>mã sản phẩm</th><td><?= h($record->product_id ?? '') ?></td></tr>
         <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
         <tr><th>đơn giá</th><td><?= h($record->unit_price ?? '') ?></td></tr>
-        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>số tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>thuế suất VAT</th><td><?= h($record->vat_rate ?? '') ?></td></tr>
         <tr><th>Số tiền thuế GTGT</th><td><?= h($record->vat_amount ?? '') ?></td></tr>
         <tr><th>Tài khoản KT</th><td><?= h($record->chart_of_account_id ?? '') ?></td></tr>
