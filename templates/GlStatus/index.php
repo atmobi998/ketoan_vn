@@ -21,7 +21,7 @@
                     <h2><?= $dnUnposted ?></h2>
                     <small>chưa hạch toán</small><br>
                     <small>Tổng: <?= $this->Number->format($dnTotal->total ?? 0) ?> VNĐ</small><br>
-                    <small>Đã HT: <?= $postedCounts['DeliveryNote_COGS'] ?></small>
+                    <small>Đã HT: <?= $postedCounts['DeliveryNote'] ?></small>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="card">
-        <div class="card-header">10 Bút toán gần nhất</div>
+        <div class="card-header">15 Bút toán gần nhất</div>
         <div class="card-body">
             <table class="table table-striped table-sm">
                 <thead>

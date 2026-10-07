@@ -39,7 +39,7 @@ class GlStatusController extends AppController
         // 10 bút toán gần nhất
         $recentEntries = $jeTbl->find()
             ->orderBy(['JournalEntries.created' => 'DESC'])
-            ->limit(10)
+            ->limit(15)
             ->toArray();
 
         // Thống kê tổng tiền chưa hạch toán (đơn giản: sum tất cả approved, trừ đi đã post sẽ tính sau)
