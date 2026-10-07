@@ -3,7 +3,17 @@
     <p class="text-muted">Tổng quan chứng từ chưa vào sổ</p>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-header">Bảng lương</div>
+                <div class="card-body">
+                    <h2><?= $prUnposted ?></h2>
+                    <small>chưa hạch toán</small><br>
+                    <small>Đã HT: <?= $postedCounts['Payroll'] ?></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
             <div class="card bg-warning text-dark mb-3">
                 <div class="card-header">Nhập kho (GR)</div>
                 <div class="card-body">
@@ -14,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="card bg-info text-white mb-3">
                 <div class="card-header">Xuất kho (DN) - Giá vốn</div>
                 <div class="card-body">
@@ -25,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="card bg-success text-white mb-3">
                 <div class="card-header">HĐ Bán (SINV)</div>
                 <div class="card-body">
@@ -35,23 +45,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="card bg-primary text-white mb-3">
                 <div class="card-header">HĐ Mua (PINV)</div>
                 <div class="card-body">
                     <h2><?= $piUnposted ?></h2>
                     <small>chưa hạch toán</small><br>
                     <small>Đã HT: <?= $postedCounts['PurchaseInvoice'] ?></small>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card bg-primary text-white mb-3">
-                <div class="card-header">Bảng lương</div>
-                <div class="card-body">
-                    <h2><?= $prUnposted ?></h2>
-                    <small>chưa hạch toán</small><br>
-                    <small>Đã HT: <?= $postedCounts['Payroll'] ?></small>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             if ($totalUnposted > 0):
             ?>
                 <h4>Có <span class="badge bg-danger"><?= $totalUnposted ?></span> chứng từ chưa vào sổ cái</h4>
-                <p>Nhấn nút dưới để tự động sinh bút toán: NK-, XK-, BH-, MH-</p>
+                <p>Nhấn nút dưới để tự động sinh bút toán: PR-, NK-, XK-, BH-, MH-</p>
                 <?= $this->Form->create(null, ['url' => ['action' => 'postAll']]) ?>
                 <?= $this->Form->button(
                     '<i class="fas fa-bolt"></i> HẠCH TOÁN TOÀN BỘ',
