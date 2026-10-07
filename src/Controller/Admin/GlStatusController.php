@@ -18,7 +18,7 @@ class GlStatusController extends AppController
         $grPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'GoodsReceipt']);
         $grUnposted = $grTbl->find()->where(['GoodsReceipts.status' => 'approved', 'GoodsReceipts.id NOT IN' => $grPostedIds])->count();
 
-        $dnPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'DeliveryNote_COGS']);
+        $dnPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'DeliveryNote']);
         $dnUnposted = $dnTbl->find()->where(['DeliveryNotes.status' => 'approved', 'DeliveryNotes.id NOT IN' => $dnPostedIds])->count();
 
         $piPostedIds = $jeTbl->find()->select(['reference_id'])->where(['reference_type' => 'PurchaseInvoice']);
@@ -32,7 +32,7 @@ class GlStatusController extends AppController
 
         $postedCounts = [
             'GoodsReceipt' => $jeTbl->find()->where(['reference_type' => 'GoodsReceipt'])->count(),
-            'DeliveryNote_COGS' => $jeTbl->find()->where(['reference_type' => 'DeliveryNote_COGS'])->count(),
+            'DeliveryNote' => $jeTbl->find()->where(['reference_type' => 'DeliveryNote'])->count(),
             'PurchaseInvoice' => $jeTbl->find()->where(['reference_type' => 'PurchaseInvoice'])->count(),
             'SalesInvoice' => $jeTbl->find()->where(['reference_type' => 'SalesInvoice'])->count(),
             'Payroll' => $jeTbl->find()->where(['reference_type' => 'Payroll'])->count(),
