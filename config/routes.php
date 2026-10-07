@@ -32,6 +32,11 @@ use Cake\Routing\RouteBuilder;
 return function (RouteBuilder $routes): void {
     $routes->setRouteClass(DashedRoute::class);
 
+    $routes->prefix('Admin', function (RouteBuilder $routes) {
+        $routes->connect('/gl-status', ['controller' => 'GlStatus', 'action' => 'index']);
+        $routes->connect('/gl-status/post-all', ['controller' => 'GlStatus', 'action' => 'postAll']);
+    });
+
     $routes->scope('/', function (RouteBuilder $builder): void {
         $builder->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
         $builder->connect('/pages/*', 'Pages::display');
@@ -40,6 +45,8 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/users/login', ['controller' => 'Users', 'action' => 'login']);
         $builder->connect('/users/logout', ['controller' => 'Users', 'action' => 'logout']);
 
+        $builder->connect('/gl-status', ['controller' => 'GlStatus', 'action' => 'index']);
+        $builder->connect('/gl-status/post-all', ['controller' => 'GlStatus', 'action' => 'postAll']);
         $builder->connect('/users', ['controller' => 'Users', 'action' => 'index'])->setMethods(['GET', 'POST']);
         $builder->connect('/users/:action/*', ['controller' => 'Users'])->setMethods(['GET', 'POST']);
         $builder->connect('/roles', ['controller' => 'Roles', 'action' => 'index'])->setMethods(['GET', 'POST']);

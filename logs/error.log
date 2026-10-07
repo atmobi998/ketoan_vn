@@ -1517,3 +1517,65 @@ Stack Trace:
 Request URL: /production-orders/edit/3
 Referer URL: https://old.streetplan.net/production-orders/adddetail/3
 Client IP: 192.168.1.79
+2026-10-07 11:48:39 error: [Error] Call to undefined method Cake\Database\Expression\QueryExpression::whereNotExists() in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/Admin/GlStatusController.php on line 22
+Stack Trace:
+- CORE/src/Database/Query.php:1789
+- CORE/src/Database/Query.php:936
+- APP/Controller/Admin/GlStatusController.php:21
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /gl-status
+Client IP: 192.168.1.79
+2026-10-07 11:51:07 error: [Error] Call to undefined method Cake\Database\Expression\QueryExpression::whereNotExists() in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/Admin/GlStatusController.php on line 22
+Stack Trace:
+- CORE/src/Database/Query.php:1789
+- CORE/src/Database/Query.php:936
+- APP/Controller/Admin/GlStatusController.php:21
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /gl-status
+Client IP: 192.168.1.79
