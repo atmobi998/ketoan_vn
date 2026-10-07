@@ -1579,3 +1579,119 @@ Stack Trace:
 
 Request URL: /gl-status
 Client IP: 192.168.1.79
+2026-10-07 20:38:43 error: [InvalidArgumentException] The `JournalEntryLines` association is not defined on `JournalEntries`.
+Valid associations are: AccountingPeriods in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 985
+Stack Trace:
+- CORE/src/ORM/EagerLoader.php:490
+- CORE/src/ORM/EagerLoader.php:303
+- CORE/src/ORM/EagerLoader.php:446
+- CORE/src/ORM/EagerLoader.php:417
+- CORE/src/ORM/Query/SelectQuery.php:1681
+- CORE/src/ORM/Query/SelectQuery.php:1620
+- CORE/src/Database/Driver.php:403
+- CORE/src/Database/Driver/Mysql.php:232
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:404
+- APP/Service/CashFlowService.php:56
+- APP/Controller/ReportsController.php:50
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /reports/cash-flow
+Referer URL: https://old.streetplan.net/reports/financial
+Client IP: 192.168.1.79
+2026-10-07 20:40:44 error: [Error] Call to undefined method Cake\ORM\Query\SelectQuery::extract() in /home/streetplan/public_htdocs/old.streetplan.net/src/Service/CashFlowService.php on line 213
+Stack Trace:
+- APP/Service/CashFlowService.php:145
+- APP/Controller/ReportsController.php:50
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /reports/cash-flow
+Referer URL: https://old.streetplan.net/reports/financial
+Client IP: 192.168.1.79
+2026-10-07 20:48:36 error: [Cake\View\Exception\MissingTemplateException] Template file `Admin/GlStatus/index.php` could not be found.
+
+The following paths were searched:
+
+- `/home/streetplan/public_htdocs/old.streetplan.net/templates/Admin/GlStatus/index.php`
+- `/home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/templates/Admin/GlStatus/index.php`
+ in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/View/View.php on line 1385
+Stack Trace:
+- CORE/src/View/View.php:790
+- CORE/src/Controller/Controller.php:727
+- CORE/src/Controller/Controller.php:532
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /admin/gl-status
+Referer URL: https://old.streetplan.net/reports/cash-flow?from_period=2026-01&to_period=2026-10
+Client IP: 192.168.1.79

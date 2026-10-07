@@ -17,6 +17,7 @@ class JournalEntriesTable extends Table
         $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
         $this->belongsTo('AccountingPeriods', ['foreignKey' => 'accounting_period_id', 'joinType' => 'LEFT']);
+        $this->hasMany('JournalEntryLines');
     }
 
     public function validationDefault(Validator $validator): Validator

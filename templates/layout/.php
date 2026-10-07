@@ -71,9 +71,11 @@
             ['label' => 'Kế toán tổng hợp', 'icon' => 'fa-book', 'children' => [
                 ['label' => 'Bút toán', 'icon' => 'fa-book-open', 'url' => '/journal-entries'],
                 ['label' => 'Dòng bút toán', 'icon' => 'fa-list', 'url' => '/journal-entry-lines'],
+                ['label' => 'Hạch toán tự động', 'icon' => 'fa-check', 'url' => '/gl-status'],
                 ['label' => 'Sổ cái', 'icon' => 'fa-book-reader', 'url' => '/reports/general-ledger'],
                 ['label' => 'Cân đối thử', 'icon' => 'fa-balance-scale', 'url' => '/reports/trial-balance'],
                 ['label' => 'BCTC', 'icon' => 'fa-file-alt', 'url' => '/reports/financial'],
+                ['label' => 'BCLCTT', 'icon' => 'fa-water', 'url' => '/reports/cash-flow'],
             ]],
             ['label' => 'Báo cáo', 'icon' => 'fa-chart-bar', 'children' => [
                 ['label' => 'Xuất Excel', 'icon' => 'fa-file-excel', 'url' => '/reports/excel'],

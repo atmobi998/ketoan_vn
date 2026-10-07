@@ -187,6 +187,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/reports/general-ledger', ['controller' => 'Reports', 'action' => 'generalLedger'])->setMethods(['GET', 'POST']);
         $builder->connect('/reports/trial-balance', ['controller' => 'Reports', 'action' => 'trialBalance'])->setMethods(['GET', 'POST']);
         $builder->connect('/reports/financial', ['controller' => 'Reports', 'action' => 'financial'])->setMethods(['GET', 'POST']);
+        $builder->connect('/reports/cash-flow', ['controller' => 'Reports', 'action' => 'cash-flow'])->setMethods(['GET', 'POST']);
         $builder->connect('/reports/excel', ['controller' => 'Reports', 'action' => 'excel'])->setMethods(['GET', 'POST']);
         $builder->connect('/reports/pdf', ['controller' => 'Reports', 'action' => 'pdf'])->setMethods(['GET', 'POST']);
         $builder->fallbacks();
