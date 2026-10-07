@@ -22,7 +22,7 @@
                 <th>số phiếu</th>
                 <th>ngày chứng từ</th>
                 <th>ngày hạch toán</th>
-                <th>tên người thanh toán</th>
+                <th>người nộp tiền</th>
                 <th>lý do</th>
                 <th>Tài khoản KT</th>
                 <th>Tác vụ</th>

@@ -34,7 +34,7 @@
                 <td><?= h($r->transaction_date ?? '') ?></td>
                 <td><?= (!empty($r->bank_account_id))? $r->bank_account->account_number.' ('.$r->bank_account->bank_name.')':'' ?></td>
                 <td><?= h($r->type ?? '') ?></td>
-                <td><?= h($r->amount ?? '') ?></td>
+                <td><?= Number::format($r->amount ?? '') ?></td>
                 <td><?= h($r->description ?? '') ?></td>
                 <td><?= h($r->reference_type ?? '') ?></td>
                 <td>

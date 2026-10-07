@@ -5,7 +5,7 @@
         <tr><th>số phiếu</th><td><?= h($record->voucher_number ?? '') ?></td></tr>
         <tr><th>ngày chứng từ</th><td><?= h($record->voucher_date ?? '') ?></td></tr>
         <tr><th>ngày hạch toán</th><td><?= h($record->accounting_date ?? '') ?></td></tr>
-        <tr><th>tên người thanh toán</th><td><?= h($record->payer_name ?? '') ?></td></tr>
+        <tr><th>người nộp tiền</th><td><?= h($record->payer_name ?? '') ?></td></tr>
         <tr><th>lý do</th><td><?= h($record->reason ?? '') ?></td></tr>
         <tr><th>bank_account_id</th><td><?= h($record->bank_account_id ?? '') ?></td></tr>
         <tr><th>Tài khoản KT</th><td><?= h($record->chart_of_account_id ?? '') ?></td></tr>
