@@ -8,7 +8,7 @@
         <tr><th>diễn giải</th><td><?= h($record->description ?? '') ?></td></tr>
         <tr><th>tổng nợ</th><td><?= h($record->total_debit ?? '') ?></td></tr>
         <tr><th>tổng có</th><td><?= h($record->total_credit ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>accounting_period_id</th><td><?= h($record->accounting_period_id ?? '') ?></td></tr>
         <tr><th>loại tham chiếu</th><td><?= h($record->reference_type ?? '') ?></td></tr>

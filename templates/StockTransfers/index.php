@@ -23,7 +23,7 @@
                 <th>từ kho</th>
                 <th>đến kho</th>
                 <th>ngày chuyển</th>
-                <th>Trạng thái</th>
+                <th>trạng thái</th>
                 <th>notes</th>
                 <th>Tác vụ</th>
         </tr></thead>

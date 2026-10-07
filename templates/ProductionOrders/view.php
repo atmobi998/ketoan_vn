@@ -9,7 +9,7 @@
         <tr><th>số lượng sản xuất</th><td><?= h($record->quantity_produced ?? '') ?></td></tr>
         <tr><th>Ngày BĐ</th><td><?= h($record->start_date ?? '') ?></td></tr>
         <tr><th>Ngày KT</th><td><?= h($record->end_date ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>trung tâm chi phí</th><td><?= h($record->cost_center_id ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

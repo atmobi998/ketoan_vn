@@ -36,7 +36,7 @@
                 <th>giờ ra</th>
                 <th>số giờ làm việc</th>
                 <th>số giờ làm thêm</th>
-                <th>Trạng thái</th>
+                <th>trạng thái</th>
                 <th>notes</th>
                 <th>Tác vụ</th>
             </tr>

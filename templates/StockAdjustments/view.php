@@ -8,7 +8,7 @@
         <tr><th>loại điều chỉnh</th><td><?= h($record->adjustment_type ?? '') ?></td></tr>
         <tr><th>lý do</th><td><?= h($record->reason ?? '') ?></td></tr>
         <tr><th>tổng số tiền</th><td><?= h($record->total_amount ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>

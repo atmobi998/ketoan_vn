@@ -9,7 +9,7 @@
                 <th>ngày thanh lý</th>
                 <th>phương pháp xử lý</th>
                 <th>số tiền thanh lý</th>
-                <th>lỗ_lãi</th>
+                <th>Lỗ/lãi</th>
                 <th>lý do</th>
                 <th>Tác vụ</th>
         </tr></thead>

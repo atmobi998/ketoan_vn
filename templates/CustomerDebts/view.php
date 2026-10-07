@@ -11,7 +11,7 @@
         <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>số tiền đã thanh toán</th><td><?= h($record->paid_amount ?? '') ?></td></tr>
         <tr><th>số tiền còn lại</th><td><?= h($record->remaining_amount ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>
     </table>

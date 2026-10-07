@@ -13,7 +13,7 @@
         <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>tỷ giá hối đoái</th><td><?= h($record->exchange_rate ?? '') ?></td></tr>
         <tr><th>amount_vnd</th><td><?= h($record->amount_vnd ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>accounting_period_id</th><td><?= h($record->accounting_period_id ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

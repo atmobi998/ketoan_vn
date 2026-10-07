@@ -10,7 +10,7 @@
         <tr><th>Số tiền thuế GTGT</th><td><?= h($record->vat_amount ?? '') ?></td></tr>
         <tr><th>số tiền giảm giá</th><td><?= h($record->discount_amount ?? '') ?></td></tr>
         <tr><th>Tổng cộng chung</th><td><?= h($record->grand_total ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>notes</th><td><?= h($record->notes ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>approved_by</th><td><?= h($record->approved_by ?? '') ?></td></tr>

@@ -5,7 +5,7 @@
         <tr><th>fixed_asset_id</th><td><?= h($record->fixed_asset_id ?? '') ?></td></tr>
         <tr><th>Ngày khấu hao</th><td><?= h($record->depreciation_date ?? '') ?></td></tr>
         <tr><th>Kỳ</th><td><?= h($record->period ?? '') ?></td></tr>
-        <tr><th>giá trị khấu hao</th><td><?= h($record->depreciation_amount ?? '') ?></td></tr>
+        <tr><th>số tiền khấu hao</th><td><?= h($record->depreciation_amount ?? '') ?></td></tr>
         <tr><th>khấu hao lũy kế</th><td><?= h($record->accumulated_depreciation ?? '') ?></td></tr>
         <tr><th>giá trị còn lại</th><td><?= h($record->remaining_value ?? '') ?></td></tr>
         <tr><th>accounting_period_id</th><td><?= h($record->accounting_period_id ?? '') ?></td></tr>

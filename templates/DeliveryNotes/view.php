@@ -8,7 +8,7 @@
         <tr><th>customer_id</th><td><?= h($record->customer_id ?? '') ?></td></tr>
         <tr><th>warehouse_id</th><td><?= h($record->warehouse_id ?? '') ?></td></tr>
         <tr><th>tổng số tiền</th><td><?= h($record->total_amount ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>notes</th><td><?= h($record->notes ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

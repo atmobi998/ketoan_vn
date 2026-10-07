@@ -8,7 +8,7 @@
         <tr><th>số lượng sản xuất</th><td><?= h($record->quantity_produced ?? '') ?></td></tr>
         <tr><th>ngày có hiệu lực</th><td><?= h($record->effective_date ?? '') ?></td></tr>
         <tr><th>ngày hết hạn</th><td><?= h($record->expiry_date ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>diễn giải</th><td><?= h($record->description ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

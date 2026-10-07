@@ -10,7 +10,7 @@
         <tr><th>tổng số tiền</th><td><?= h($record->total_amount ?? '') ?></td></tr>
         <tr><th>tổng các khoản khấu trừ</th><td><?= h($record->total_deduction ?? '') ?></td></tr>
         <tr><th>tổng giá trị thực nhận</th><td><?= h($record->total_net ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>accounting_period_id</th><td><?= h($record->accounting_period_id ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

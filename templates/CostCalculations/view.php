@@ -10,7 +10,7 @@
         <tr><th>tổng chi phí</th><td><?= h($record->total_cost ?? '') ?></td></tr>
         <tr><th>chi phí mỗi đơn vị</th><td><?= h($record->unit_cost ?? '') ?></td></tr>
         <tr><th>calculation_date</th><td><?= h($record->calculation_date ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>notes</th><td><?= h($record->notes ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

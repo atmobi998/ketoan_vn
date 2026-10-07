@@ -6,7 +6,7 @@
         <tr><th>Tên</th><td><?= h($record->name ?? '') ?></td></tr>
         <tr><th>Ngày BĐ</th><td><?= h($record->start_date ?? '') ?></td></tr>
         <tr><th>Ngày KT</th><td><?= h($record->end_date ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>
     </table>

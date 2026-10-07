@@ -10,7 +10,7 @@
         <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>monthly_allocation</th><td><?= h($record->monthly_allocation ?? '') ?></td></tr>
         <tr><th>remaining_months</th><td><?= h($record->remaining_months ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>notes</th><td><?= h($record->notes ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>

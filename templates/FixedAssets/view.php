@@ -12,7 +12,7 @@
         <tr><th>khấu hao lũy kế</th><td><?= h($record->accumulated_depreciation ?? '') ?></td></tr>
         <tr><th>giá trị còn lại</th><td><?= h($record->remaining_value ?? '') ?></td></tr>
         <tr><th>location</th><td><?= h($record->location ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>employee_id</th><td><?= h($record->employee_id ?? '') ?></td></tr>
         <tr><th>department_id</th><td><?= h($record->department_id ?? '') ?></td></tr>
         <tr><th>Tài khoản KT</th><td><?= h($record->chart_of_account_id ?? '') ?></td></tr>

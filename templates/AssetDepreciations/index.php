@@ -19,7 +19,7 @@
                 <th>TSCĐ</th>
                 <th>Ngày khấu hao</th>
                 <th>Kỳ</th>
-                <th>giá trị khấu hao</th>
+                <th>số tiền khấu hao</th>
                 <th>khấu hao lũy kế</th>
                 <th>giá trị còn lại</th>
                 <th>kỳ kế toán</th>

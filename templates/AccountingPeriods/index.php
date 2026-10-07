@@ -9,7 +9,7 @@
                 <th>Tên</th>
                 <th>Ngày BĐ</th>
                 <th>Ngày KT</th>
-                <th>Trạng thái</th>
+                <th>trạng thái</th>
                 <th>TGian Tạo</th>
                 <th>Tác vụ</th>
         </tr></thead>

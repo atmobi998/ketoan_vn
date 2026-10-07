@@ -26,7 +26,7 @@
                 <th>ngày chứng từ</th>
                 <th>ngày đến hạn</th>
                 <th>số lượng</th>
-                <th>Trạng thái</th>
+                <th>trạng thái</th>
                 <th>Tác vụ</th>
             </tr>
         </thead>

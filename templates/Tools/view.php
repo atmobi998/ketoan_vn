@@ -11,7 +11,7 @@
         <tr><th>total_value</th><td><?= h($record->total_value ?? '') ?></td></tr>
         <tr><th>số tháng phân bổ</th><td><?= h($record->allocation_months ?? '') ?></td></tr>
         <tr><th>giá trị còn lại</th><td><?= h($record->remaining_value ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>
         <tr><th>TGian sửa</th><td><?= h($record->modified ?? '') ?></td></tr>
     </table>

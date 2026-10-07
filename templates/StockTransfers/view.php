@@ -6,7 +6,7 @@
         <tr><th>từ kho</th><td><?= h($related['FromWarehouses'][$record->from_warehouse_id] ?? '') ?></td></tr>
         <tr><th>đến kho</th><td><?= h($related['ToWarehouses'][$record->to_warehouse_id] ?? '') ?></td></tr>
         <tr><th>ngày chuyển</th><td><?= h($record->transfer_date ?? '') ?></td></tr>
-        <tr><th>Trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
+        <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
         <tr><th>notes</th><td><?= h($record->notes ?? '') ?></td></tr>
         <tr><th>created_by</th><td><?= h($record->created_by ?? '') ?></td></tr>
         <tr><th>TGian Tạo</th><td><?= h($record->created ?? '') ?></td></tr>

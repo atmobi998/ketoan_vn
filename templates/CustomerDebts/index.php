@@ -25,7 +25,7 @@
                 <th>số chứng từ</th>
                 <th>ngày chứng từ</th>
                 <th>ngày đến hạn</th>
-                <th>Trạng thái</th>
+                <th>trạng thái</th>
                 <th>số lượng</th>
                 <th>số tiền đã thanh toán</th>
                 <th>số tiền còn lại</th>
