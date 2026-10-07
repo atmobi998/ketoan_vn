@@ -5,7 +5,7 @@
         <tr><th>ngày giao dịch</th><td><?= h($record->transaction_date ?? '') ?></td></tr>
         <tr><th>bank_account_id</th><td><?= h($record->bank_account_id ?? '') ?></td></tr>
         <tr><th>kiểu</th><td><?= h($record->type ?? '') ?></td></tr>
-        <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>diễn giải</th><td><?= h($record->description ?? '') ?></td></tr>
         <tr><th>loại tham chiếu</th><td><?= h($record->reference_type ?? '') ?></td></tr>
         <tr><th>reference_id</th><td><?= h($record->reference_id ?? '') ?></td></tr>

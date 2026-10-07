@@ -1,3 +1,7 @@
+<?php
+        use Cake\I18n\FrozenDate;
+        use Cake\I18n\Number;
+?>
 <div class="cash_payments form">
     <h3>Sửa CashPayments: <?= h($record->id) ?></h3>
     <?= $this->Form->create($record) ?>
@@ -31,7 +35,7 @@
                 <th>cash_payment</th>
                 <th>diễn giải</th>
                 <th>Tài khoản KT</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>cost_center</th>
                 <th>TGian Tạo</th>
                 <th>Tác vụ</th>
@@ -43,7 +47,7 @@
                 <td><?= (!empty($r->cash_payment_id))? $r->cash_payment->full_name:'' ?></td>
                 <td><?= h($r->description ?? '') ?></td>
                 <td><?= (!empty($r->chart_of_account_id))? $r->chart_of_account->full_name:'' ?></td>
-                <td><?= h($r->amount ?? '') ?></td>
+                <td><?= Number::format($r->amount ?? '') ?></td>
                 <td><?= (!empty($r->cost_center_id))? $r->cost_center->full_name:'' ?></td>
                 <td><?= h($r->created ?? '') ?></td>
                 <td>

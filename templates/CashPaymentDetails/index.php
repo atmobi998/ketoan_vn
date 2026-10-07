@@ -12,7 +12,7 @@
                 <th>mã thanh toán tiền mặt</th>
                 <th>diễn giải</th>
                 <th>Tài khoản KT</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>trung tâm chi phí</th>
                 <th>TGian Tạo</th>
                 <th>Tác vụ</th>

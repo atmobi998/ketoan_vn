@@ -22,7 +22,7 @@
                 <th>ngày giao dịch</th>
                 <th>tài khoản ngân hàng</th>
                 <th>kiểu</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>diễn giải</th>
                 <th>loại tham chiếu</th>
                 <th>Tác vụ</th>

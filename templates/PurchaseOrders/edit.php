@@ -38,7 +38,7 @@
                 <th>số lượng</th>
                 <th>đơn vị</th>
                 <th>đơn giá</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>thuế suất VAT</th>
                 <th>Số tiền thuế GTGT</th>
                 <th>Tác vụ</th>

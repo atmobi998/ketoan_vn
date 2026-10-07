@@ -5,7 +5,7 @@
         <tr><th>Mã thanh tóan</th><td><?= h($record->payment_number ?? '') ?></td></tr>
         <tr><th>ngày thanh toán</th><td><?= h($record->payment_date ?? '') ?></td></tr>
         <tr><th>customer_id</th><td><?= h($record->customer_id ?? '') ?></td></tr>
-        <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>bank_account_id</th><td><?= h($record->bank_account_id ?? '') ?></td></tr>
         <tr><th>phương thức thanh toán</th><td><?= h($record->payment_method ?? '') ?></td></tr>
         <tr><th>reference</th><td><?= h($record->reference ?? '') ?></td></tr>

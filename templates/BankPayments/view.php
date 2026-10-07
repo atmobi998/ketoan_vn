@@ -10,7 +10,7 @@
         <tr><th>bank_account_id</th><td><?= h($record->bank_account_id ?? '') ?></td></tr>
         <tr><th>Tài khoản KT</th><td><?= h($record->chart_of_account_id ?? '') ?></td></tr>
         <tr><th>currency_id</th><td><?= h($record->currency_id ?? '') ?></td></tr>
-        <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>tỷ giá hối đoái</th><td><?= h($record->exchange_rate ?? '') ?></td></tr>
         <tr><th>amount_vnd</th><td><?= h($record->amount_vnd ?? '') ?></td></tr>
         <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>

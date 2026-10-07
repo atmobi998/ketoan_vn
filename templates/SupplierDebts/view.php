@@ -8,7 +8,7 @@
         <tr><th>số chứng từ</th><td><?= h($record->document_number ?? '') ?></td></tr>
         <tr><th>ngày chứng từ</th><td><?= h($record->document_date ?? '') ?></td></tr>
         <tr><th>ngày đến hạn</th><td><?= h($record->due_date ?? '') ?></td></tr>
-        <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>số tiền đã thanh toán</th><td><?= h($record->paid_amount ?? '') ?></td></tr>
         <tr><th>số tiền còn lại</th><td><?= h($record->remaining_amount ?? '') ?></td></tr>
         <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>

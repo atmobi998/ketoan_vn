@@ -7,7 +7,7 @@
                 <th>Mã ID</th>
                 <th>sản phẩm</th>
                 <th>kho</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>Số lượng hiện có</th>
                 <th>số lượng đặt trước</th>
                 <th>đơn vị</th>

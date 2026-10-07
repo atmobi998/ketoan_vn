@@ -89,7 +89,7 @@
                 <th>Mã ID</th>
                 <th>Mã lệnh sản xuất</th>
                 <th>cost_type</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>diễn giải</th>
                 <th>trung tâm chi phí</th>
                 <th>TGian Tạo</th>
@@ -141,7 +141,7 @@
                 <th>Mã ID</th>
                 <th>BOM</th>
                 <th>nguyên vật liệu</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>đơn vị</th>
                 <th>tỷ lệ lãng phí</th>
                 <th>chi phí mỗi đơn vị</th>

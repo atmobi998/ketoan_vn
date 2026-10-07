@@ -1,3 +1,7 @@
+<?php
+        use Cake\I18n\FrozenDate;
+        use Cake\I18n\Number;
+?>
 <div class="cash_receipt_details index">
     <h3>CashReceiptDetails <a href="<?= $this->Url->build(['action' => 'add']) ?>" class="btn btn-primary btn-sm float-end">+ Thêm</a>
     <a href="<?= $this->Url->build(['action' => 'exportExcel']) ?>" class="btn btn-success btn-sm float-end me-2"><i class="fa fa-file-excel"></i> Excel</a>
@@ -8,7 +12,7 @@
                 <th>cash_receipt_id</th>
                 <th>diễn giải</th>
                 <th>Tài khoản KT</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>trung tâm chi phí</th>
                 <th>TGian Tạo</th>
                 <th>Tác vụ</th>
@@ -20,7 +24,7 @@
                 <td><?= h($r->cash_receipt_id ?? '') ?></td>
                 <td><?= h($r->description ?? '') ?></td>
                 <td><?= h($r->chart_of_account_id ?? '') ?></td>
-                <td><?= h($r->amount ?? '') ?></td>
+                <td><?= Number::format($r->amount ?? '') ?></td>
                 <td><?= h($r->cost_center_id ?? '') ?></td>
                 <td><?= h($r->created ?? '') ?></td>
                 <td>

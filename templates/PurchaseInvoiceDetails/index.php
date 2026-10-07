@@ -1,3 +1,7 @@
+<?php
+        use Cake\I18n\FrozenDate;
+        use Cake\I18n\Number;
+?>
 <div class="purchase_invoice_details index">
     <h3>PurchaseInvoiceDetails <a href="<?= $this->Url->build(['action' => 'add']) ?>" class="btn btn-primary btn-sm float-end">+ Thêm</a>
     <a href="<?= $this->Url->build(['action' => 'exportExcel']) ?>" class="btn btn-success btn-sm float-end me-2"><i class="fa fa-file-excel"></i> Excel</a>
@@ -9,7 +13,7 @@
                 <th>mã sản phẩm</th>
                 <th>số lượng</th>
                 <th>đơn giá</th>
-                <th>số lượng</th>
+                <th>thành tiền</th>
                 <th>thuế suất VAT</th>
                 <th>Tác vụ</th>
         </tr></thead>
@@ -20,8 +24,8 @@
                 <td><?= h($r->purchase_invoice_id ?? '') ?></td>
                 <td><?= h($r->product_id ?? '') ?></td>
                 <td><?= h($r->quantity ?? '') ?></td>
-                <td><?= h($r->unit_price ?? '') ?></td>
-                <td><?= h($r->amount ?? '') ?></td>
+                <td><?= Number::format($r->unit_price ?? '') ?></td>
+                <td><?= Number::format($r->amount ?? '') ?></td>
                 <td><?= h($r->vat_rate ?? '') ?></td>
                 <td>
                     <?= $this->Form->postLink('Xóa', ['action' => 'delete', $r->id], ['confirm' => 'Xóa?', 'class' => 'btn btn-sm btn-danger']) ?>

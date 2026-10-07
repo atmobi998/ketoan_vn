@@ -7,7 +7,7 @@
         <tr><th>department_id</th><td><?= h($record->department_id ?? '') ?></td></tr>
         <tr><th>ngày phân bổ</th><td><?= h($record->allocation_date ?? '') ?></td></tr>
         <tr><th>số lượng</th><td><?= h($record->quantity ?? '') ?></td></tr>
-        <tr><th>số lượng</th><td><?= h($record->amount ?? '') ?></td></tr>
+        <tr><th>thành tiền</th><td><?= h($record->amount ?? '') ?></td></tr>
         <tr><th>monthly_allocation</th><td><?= h($record->monthly_allocation ?? '') ?></td></tr>
         <tr><th>remaining_months</th><td><?= h($record->remaining_months ?? '') ?></td></tr>
         <tr><th>trạng thái</th><td><?= h($record->status ?? '') ?></td></tr>
