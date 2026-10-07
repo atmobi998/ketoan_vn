@@ -158,7 +158,7 @@ class GlPostingService
 
     public function postDeliveryNote(int $dnId, bool $force = false): array
     {
-        if (!$force && $this->hasPosted('DeliveryNote_COGS', $dnId)) {
+        if (!$force && $this->hasPosted('DeliveryNote', $dnId)) {
             return ['status' => 'skipped', 'message' => 'Đã hạch toán giá vốn rồi'];
         }
         $dnTbl = TableRegistry::getTableLocator()->get('DeliveryNotes');
@@ -199,7 +199,7 @@ class GlPostingService
                 $je->total_credit = $dn->total_amount;
                 $je->status = 'posted';
                 $je->accounting_period_id = $periodId;
-                $je->reference_type = 'DeliveryNote_COGS';
+                $je->reference_type = 'DeliveryNote';
                 $je->reference_id = (string)$dnId;
                 $je->created_by = 1;
 
@@ -608,6 +608,11 @@ class GlPostingService
     public function postAllMissing(): array
     {
         $results = [];
+        $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
+        $payrolls = $payrollTbl->find()->where(['status IN' => ['approved','paid']])->orderBy(['Payrolls.accounting_period_id' => 'ASC'])->all();
+        foreach ($payrolls as $pr) {
+            $results[] = ['type' => 'Payroll', 'id' => $pr->id, 'result' => $this->postPayroll($pr->id)];
+        }
         $grTbl = TableRegistry::getTableLocator()->get('GoodsReceipts');
         $grs = $grTbl->find()->where(['status' => 'approved'])->all();
         foreach ($grs as $gr) {
@@ -623,12 +628,6 @@ class GlPostingService
         foreach ($pis as $pi) {
             $results[] = ['type' => 'PurchaseInvoice', 'id' => $pi->id, 'result' => $this->postPurchaseInvoice($pi->id)];
         }
-        $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
-        $payrolls = $payrollTbl->find()->where(['status IN' => ['approved','paid']])->orderBy(['Payrolls.accounting_period_id' => 'ASC'])->all();
-        foreach ($payrolls as $pr) {
-            $results[] = ['type' => 'Payroll', 'id' => $pr->id, 'result' => $this->postPayroll($pr->id)];
-        }
-
         $siTbl = TableRegistry::getTableLocator()->get('SalesInvoices');
         $sis = $siTbl->find()->where(['status IN' => ['approved','paid']])->all();
         foreach ($sis as $si) {
