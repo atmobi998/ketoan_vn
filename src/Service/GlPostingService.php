@@ -237,6 +237,30 @@ class GlPostingService
         if (!$force && $this->hasPosted('SalesInvoice', $siId)) {
             return ['status' => 'skipped', 'message' => 'Đã hạch toán rồi'];
         }
+        $cashReceiptTbl = TableRegistry::getTableLocator()->get('CashReceipts');
+        $crs = $cashReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($crs as $cr) {
+            $results[] = ['type' => 'CashReceipt', 'id' => $cr->id, 'result' => $this->postCashReceipt($cr->id)];
+        }
+
+        $cashPaymentTbl = TableRegistry::getTableLocator()->get('CashPayments');
+        $cps = $cashPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($cps as $cp) {
+            $results[] = ['type' => 'CashPayment', 'id' => $cp->id, 'result' => $this->postCashPayment($cp->id)];
+        }
+
+        $bankReceiptTbl = TableRegistry::getTableLocator()->get('BankReceipts');
+        $brs = $bankReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($brs as $br) {
+            $results[] = ['type' => 'BankReceipt', 'id' => $br->id, 'result' => $this->postBankReceipt($br->id)];
+        }
+
+        $bankPaymentTbl = TableRegistry::getTableLocator()->get('BankPayments');
+        $bps = $bankPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($bps as $bp) {
+            $results[] = ['type' => 'BankPayment', 'id' => $bp->id, 'result' => $this->postBankPayment($bp->id)];
+        }
+
         $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
         $payrolls = $payrollTbl->find()->where(['status IN' => ['approved','paid']])->all();
         foreach ($payrolls as $pr) {
@@ -441,6 +465,30 @@ class GlPostingService
             return ['status' => 'skipped', 'message' => 'Đã hạch toán lương rồi'];
         }
 
+        $cashReceiptTbl = TableRegistry::getTableLocator()->get('CashReceipts');
+        $crs = $cashReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($crs as $cr) {
+            $results[] = ['type' => 'CashReceipt', 'id' => $cr->id, 'result' => $this->postCashReceipt($cr->id)];
+        }
+
+        $cashPaymentTbl = TableRegistry::getTableLocator()->get('CashPayments');
+        $cps = $cashPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($cps as $cp) {
+            $results[] = ['type' => 'CashPayment', 'id' => $cp->id, 'result' => $this->postCashPayment($cp->id)];
+        }
+
+        $bankReceiptTbl = TableRegistry::getTableLocator()->get('BankReceipts');
+        $brs = $bankReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($brs as $br) {
+            $results[] = ['type' => 'BankReceipt', 'id' => $br->id, 'result' => $this->postBankReceipt($br->id)];
+        }
+
+        $bankPaymentTbl = TableRegistry::getTableLocator()->get('BankPayments');
+        $bps = $bankPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($bps as $bp) {
+            $results[] = ['type' => 'BankPayment', 'id' => $bp->id, 'result' => $this->postBankPayment($bp->id)];
+        }
+
         $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
         $payroll = $payrollTbl->get($payrollId);
 
@@ -588,6 +636,30 @@ class GlPostingService
      */
     public function postPayrollMonth(int $month, int $year, bool $force = false): array
     {
+        $cashReceiptTbl = TableRegistry::getTableLocator()->get('CashReceipts');
+        $crs = $cashReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($crs as $cr) {
+            $results[] = ['type' => 'CashReceipt', 'id' => $cr->id, 'result' => $this->postCashReceipt($cr->id)];
+        }
+
+        $cashPaymentTbl = TableRegistry::getTableLocator()->get('CashPayments');
+        $cps = $cashPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($cps as $cp) {
+            $results[] = ['type' => 'CashPayment', 'id' => $cp->id, 'result' => $this->postCashPayment($cp->id)];
+        }
+
+        $bankReceiptTbl = TableRegistry::getTableLocator()->get('BankReceipts');
+        $brs = $bankReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($brs as $br) {
+            $results[] = ['type' => 'BankReceipt', 'id' => $br->id, 'result' => $this->postBankReceipt($br->id)];
+        }
+
+        $bankPaymentTbl = TableRegistry::getTableLocator()->get('BankPayments');
+        $bps = $bankPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($bps as $bp) {
+            $results[] = ['type' => 'BankPayment', 'id' => $bp->id, 'result' => $this->postBankPayment($bp->id)];
+        }
+
         $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
         $payrolls = $payrollTbl->find()->where(['payroll_month' => $month, 'payroll_year' => $year, 'status IN' => ['approved','paid']])->all();
 
@@ -605,14 +677,356 @@ class GlPostingService
     }
 
 
+
+    // ==================== VỐN BẰNG TIỀN - 111, 112 ====================
+
+    /**
+     * Phiếu thu tiền mặt - PT
+     * Nợ 1111 / Có TK đối ứng (chi tiết)
+     */
+    public function postCashReceipt(int $id, bool $force = false): array
+    {
+        if (!$force && $this->hasPosted('CashReceipt', $id)) {
+            return ['status' => 'skipped', 'message' => 'Đã hạch toán PT rồi'];
+        }
+        $tbl = TableRegistry::getTableLocator()->get('CashReceipts');
+        $detailsTbl = TableRegistry::getTableLocator()->get('CashReceiptDetails');
+        $pt = $tbl->get($id);
+        
+        if ($pt->status !== 'approved') {
+            return ['status' => 'error', 'message' => 'Phiếu thu chưa duyệt'];
+        }
+
+        $periodId = $this->getPeriodIdByDate($pt->voucher_date->format('Y-m-d') ?? $pt->accounting_date->format('Y-m-d'));
+        $entryNumber = $this->genEntryNumber('PT', $pt->voucher_date->format('Y-m-d'));
+
+        $acc1111 = $this->getAccountIdByCode('1111') ?? $this->getAccountIdByCode('111');
+        if (!$acc1111) {
+            return ['status' => 'error', 'message' => 'Thiếu TK 1111'];
+        }
+
+        $details = $detailsTbl->find()->where(['cash_receipt_id' => $id])->all();
+        
+        $jeTbl = TableRegistry::getTableLocator()->get('JournalEntries');
+        $jelTbl = TableRegistry::getTableLocator()->get('JournalEntryLines');
+        $conn = $jeTbl->getConnection();
+
+        try {
+            return $conn->transactional(function () use ($jeTbl, $jelTbl, $pt, $periodId, $entryNumber, $acc1111, $details, $id) {
+                $je = $jeTbl->newEmptyEntity();
+                $je->entry_number = $entryNumber;
+                $je->entry_date = $pt->voucher_date;
+                $je->accounting_date = $pt->accounting_date;
+                $je->description = "Thu tiền mặt {$pt->voucher_number} - {$pt->payer_name}: {$pt->reason}";
+                $je->total_debit = $pt->amount_vnd;
+                $je->total_credit = $pt->amount_vnd;
+                $je->status = 'posted';
+                $je->accounting_period_id = $periodId;
+                $je->reference_type = 'CashReceipt';
+                $je->reference_id = (string)$id;
+                $je->created_by = $pt->created_by ?? 1;
+                $jeTbl->saveOrFail($je);
+
+                // Nợ 1111
+                $dr = $jelTbl->newEntity([
+                    'journal_entry_id' => $je->id,
+                    'chart_of_account_id' => $acc1111,
+                    'debit' => $pt->amount_vnd,
+                    'credit' => 0,
+                    'description' => $pt->reason ?? 'Thu tiền mặt',
+                ]);
+                $jelTbl->saveOrFail($dr);
+
+                // Có TK đối ứng - từ chi tiết hoặc header
+                if (!$details->isEmpty()) {
+                    foreach ($details as $d) {
+                        if ($d->amount <= 0) continue;
+                        $acc = $d->chart_of_account_id;
+                        if (!$acc) continue;
+                        $cr = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $acc,
+                            'debit' => 0,
+                            'credit' => $d->amount,
+                            'description' => $d->description ?? $pt->reason,
+                        ]);
+                        $jelTbl->saveOrFail($cr);
+                    }
+                } else {
+                    $accCo = $pt->chart_of_account_id;
+                    if ($accCo) {
+                        $cr = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $accCo,
+                            'debit' => 0,
+                            'credit' => $pt->amount_vnd,
+                            'description' => $pt->reason,
+                        ]);
+                        $jelTbl->saveOrFail($cr);
+                    }
+                }
+
+                return ['status' => 'ok', 'entry_id' => $je->id, 'entry_number' => $entryNumber];
+            });
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Phiếu chi tiền mặt - PC
+     * Nợ TK đối ứng / Có 1111
+     */
+    public function postCashPayment(int $id, bool $force = false): array
+    {
+        if (!$force && $this->hasPosted('CashPayment', $id)) {
+            return ['status' => 'skipped', 'message' => 'Đã hạch toán PC rồi'];
+        }
+        $tbl = TableRegistry::getTableLocator()->get('CashPayments');
+        $detailsTbl = TableRegistry::getTableLocator()->get('CashPaymentDetails');
+        $pc = $tbl->get($id);
+
+        if ($pc->status !== 'approved') {
+            return ['status' => 'error', 'message' => 'Phiếu chi chưa duyệt'];
+        }
+
+        $periodId = $this->getPeriodIdByDate($pc->voucher_date->format('Y-m-d') ?? $pc->accounting_date->format('Y-m-d'));
+        $entryNumber = $this->genEntryNumber('PC', $pc->voucher_date->format('Y-m-d'));
+
+        $acc1111 = $this->getAccountIdByCode('1111') ?? $this->getAccountIdByCode('111');
+        if (!$acc1111) {
+            return ['status' => 'error', 'message' => 'Thiếu TK 1111'];
+        }
+
+        $details = $detailsTbl->find()->where(['cash_payment_id' => $id])->all();
+        $jeTbl = TableRegistry::getTableLocator()->get('JournalEntries');
+        $jelTbl = TableRegistry::getTableLocator()->get('JournalEntryLines');
+        $conn = $jeTbl->getConnection();
+
+        try {
+            return $conn->transactional(function () use ($jeTbl, $jelTbl, $pc, $periodId, $entryNumber, $acc1111, $details, $id) {
+                $je = $jeTbl->newEmptyEntity();
+                $je->entry_number = $entryNumber;
+                $je->entry_date = $pc->voucher_date;
+                $je->accounting_date = $pc->accounting_date;
+                $je->description = "Chi tiền mặt {$pc->voucher_number} - {$pc->payee_name}: {$pc->reason}";
+                $je->total_debit = $pc->amount_vnd;
+                $je->total_credit = $pc->amount_vnd;
+                $je->status = 'posted';
+                $je->accounting_period_id = $periodId;
+                $je->reference_type = 'CashPayment';
+                $je->reference_id = (string)$id;
+                $je->created_by = $pc->created_by ?? 1;
+                $jeTbl->saveOrFail($je);
+
+                // Có 1111
+                $cr = $jelTbl->newEntity([
+                    'journal_entry_id' => $je->id,
+                    'chart_of_account_id' => $acc1111,
+                    'debit' => 0,
+                    'credit' => $pc->amount_vnd,
+                    'description' => $pc->reason ?? 'Chi tiền mặt',
+                ]);
+                $jelTbl->saveOrFail($cr);
+
+                // Nợ TK đối ứng
+                if (!$details->isEmpty()) {
+                    foreach ($details as $d) {
+                        if ($d->amount <= 0) continue;
+                        $acc = $d->chart_of_account_id;
+                        if (!$acc) continue;
+                        $dr = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $acc,
+                            'debit' => $d->amount,
+                            'credit' => 0,
+                            'description' => $d->description ?? $pc->reason,
+                        ]);
+                        $jelTbl->saveOrFail($dr);
+                    }
+                } else {
+                    $accNo = $pc->chart_of_account_id;
+                    if ($accNo) {
+                        $dr = $jelTbl->newEntity([
+                            'journal_entry_id' => $je->id,
+                            'chart_of_account_id' => $accNo,
+                            'debit' => $pc->amount_vnd,
+                            'credit' => 0,
+                            'description' => $pc->reason,
+                        ]);
+                        $jelTbl->saveOrFail($dr);
+                    }
+                }
+
+                return ['status' => 'ok', 'entry_id' => $je->id, 'entry_number' => $entryNumber];
+            });
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Giấy báo Có ngân hàng - BC
+     * Nợ 1121 / Có TK đối ứng
+     */
+    public function postBankReceipt(int $id, bool $force = false): array
+    {
+        if (!$force && $this->hasPosted('BankReceipt', $id)) {
+            return ['status' => 'skipped', 'message' => 'Đã hạch toán BC rồi'];
+        }
+        $tbl = TableRegistry::getTableLocator()->get('BankReceipts');
+        $br = $tbl->get($id);
+        if ($br->status !== 'approved') {
+            return ['status' => 'error', 'message' => 'Giấy báo Có chưa duyệt'];
+        }
+
+        $periodId = $this->getPeriodIdByDate($br->voucher_date->format('Y-m-d'));
+        $entryNumber = $this->genEntryNumber('BC', $br->voucher_date->format('Y-m-d'));
+
+        // TK 112 từ bank_accounts
+        $bankAccTbl = TableRegistry::getTableLocator()->get('BankAccounts');
+        $bankAcc = $bankAccTbl->get($br->bank_account_id);
+        $acc112 = $bankAcc->chart_of_account_id ?? $this->getAccountIdByCode('1121') ?? $this->getAccountIdByCode('112');
+
+        if (!$acc112) {
+            return ['status' => 'error', 'message' => 'Thiếu TK 1121'];
+        }
+
+        $jeTbl = TableRegistry::getTableLocator()->get('JournalEntries');
+        $jelTbl = TableRegistry::getTableLocator()->get('JournalEntryLines');
+        $conn = $jeTbl->getConnection();
+
+        try {
+            return $conn->transactional(function () use ($jeTbl, $jelTbl, $br, $periodId, $entryNumber, $acc112, $id) {
+                $je = $jeTbl->newEmptyEntity();
+                $je->entry_number = $entryNumber;
+                $je->entry_date = $br->voucher_date;
+                $je->accounting_date = $br->accounting_date;
+                $je->description = "Báo Có {$br->voucher_number} - {$br->payer_name}: {$br->reason}";
+                $je->total_debit = $br->amount_vnd;
+                $je->total_credit = $br->amount_vnd;
+                $je->status = 'posted';
+                $je->accounting_period_id = $periodId;
+                $je->reference_type = 'BankReceipt';
+                $je->reference_id = (string)$id;
+                $je->created_by = $br->created_by ?? 1;
+                $jeTbl->saveOrFail($je);
+
+                // Nợ 1121
+                $dr = $jelTbl->newEntity([
+                    'journal_entry_id' => $je->id,
+                    'chart_of_account_id' => $acc112,
+                    'debit' => $br->amount_vnd,
+                    'credit' => 0,
+                    'description' => $br->reason,
+                ]);
+                $jelTbl->saveOrFail($dr);
+
+                // Có TK đối ứng
+                if ($br->chart_of_account_id) {
+                    $cr = $jelTbl->newEntity([
+                        'journal_entry_id' => $je->id,
+                        'chart_of_account_id' => $br->chart_of_account_id,
+                        'debit' => 0,
+                        'credit' => $br->amount_vnd,
+                        'description' => $br->reason,
+                    ]);
+                    $jelTbl->saveOrFail($cr);
+                }
+
+                return ['status' => 'ok', 'entry_id' => $je->id, 'entry_number' => $entryNumber];
+            });
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Giấy báo Nợ / UNC - BN
+     * Nợ TK đối ứng / Có 1121
+     */
+    public function postBankPayment(int $id, bool $force = false): array
+    {
+        if (!$force && $this->hasPosted('BankPayment', $id)) {
+            return ['status' => 'skipped', 'message' => 'Đã hạch toán BN rồi'];
+        }
+        $tbl = TableRegistry::getTableLocator()->get('BankPayments');
+        $bp = $tbl->get($id);
+        if ($bp->status !== 'approved') {
+            return ['status' => 'error', 'message' => 'Giấy báo Nợ chưa duyệt'];
+        }
+
+        $periodId = $this->getPeriodIdByDate($bp->voucher_date->format('Y-m-d'));
+        $entryNumber = $this->genEntryNumber('BN', $bp->voucher_date->format('Y-m-d'));
+
+        $bankAccTbl = TableRegistry::getTableLocator()->get('BankAccounts');
+        $bankAcc = $bankAccTbl->get($bp->bank_account_id);
+        $acc112 = $bankAcc->chart_of_account_id ?? $this->getAccountIdByCode('1121') ?? $this->getAccountIdByCode('112');
+
+        if (!$acc112) {
+            return ['status' => 'error', 'message' => 'Thiếu TK 1121'];
+        }
+
+        $jeTbl = TableRegistry::getTableLocator()->get('JournalEntries');
+        $jelTbl = TableRegistry::getTableLocator()->get('JournalEntryLines');
+        $conn = $jeTbl->getConnection();
+
+        try {
+            return $conn->transactional(function () use ($jeTbl, $jelTbl, $bp, $periodId, $entryNumber, $acc112, $id) {
+                $je = $jeTbl->newEmptyEntity();
+                $je->entry_number = $entryNumber;
+                $je->entry_date = $bp->voucher_date;
+                $je->accounting_date = $bp->accounting_date;
+                $je->description = "Báo Nợ {$bp->voucher_number} - {$bp->payee_name}: {$bp->reason}";
+                $je->total_debit = $bp->amount_vnd;
+                $je->total_credit = $bp->amount_vnd;
+                $je->status = 'posted';
+                $je->accounting_period_id = $periodId;
+                $je->reference_type = 'BankPayment';
+                $je->reference_id = (string)$id;
+                $je->created_by = $bp->created_by ?? 1;
+                $jeTbl->saveOrFail($je);
+
+                // Có 1121
+                $cr = $jelTbl->newEntity([
+                    'journal_entry_id' => $je->id,
+                    'chart_of_account_id' => $acc112,
+                    'debit' => 0,
+                    'credit' => $bp->amount_vnd,
+                    'description' => $bp->reason,
+                ]);
+                $jelTbl->saveOrFail($cr);
+
+                // Nợ TK đối ứng
+                if ($bp->chart_of_account_id) {
+                    $dr = $jelTbl->newEntity([
+                        'journal_entry_id' => $je->id,
+                        'chart_of_account_id' => $bp->chart_of_account_id,
+                        'debit' => $bp->amount_vnd,
+                        'credit' => 0,
+                        'description' => $bp->reason,
+                    ]);
+                    $jelTbl->saveOrFail($dr);
+                }
+
+                return ['status' => 'ok', 'entry_id' => $je->id, 'entry_number' => $entryNumber];
+            });
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+
     public function postAllMissing(): array
     {
         $results = [];
+
         $payrollTbl = TableRegistry::getTableLocator()->get('Payrolls');
         $payrolls = $payrollTbl->find()->where(['status IN' => ['approved','paid']])->orderBy(['Payrolls.accounting_period_id' => 'ASC'])->all();
         foreach ($payrolls as $pr) {
             $results[] = ['type' => 'Payroll', 'id' => $pr->id, 'result' => $this->postPayroll($pr->id)];
         }
+        
         $grTbl = TableRegistry::getTableLocator()->get('GoodsReceipts');
         $grs = $grTbl->find()->where(['status' => 'approved'])->all();
         foreach ($grs as $gr) {
@@ -628,11 +1042,37 @@ class GlPostingService
         foreach ($pis as $pi) {
             $results[] = ['type' => 'PurchaseInvoice', 'id' => $pi->id, 'result' => $this->postPurchaseInvoice($pi->id)];
         }
+
         $siTbl = TableRegistry::getTableLocator()->get('SalesInvoices');
         $sis = $siTbl->find()->where(['status IN' => ['approved','paid']])->all();
         foreach ($sis as $si) {
             $results[] = ['type' => 'SalesInvoice', 'id' => $si->id, 'result' => $this->postSalesInvoice($si->id)];
         }
+
+        $cashReceiptTbl = TableRegistry::getTableLocator()->get('CashReceipts');
+        $crs = $cashReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($crs as $cr) {
+            $results[] = ['type' => 'CashReceipt', 'id' => $cr->id, 'result' => $this->postCashReceipt($cr->id)];
+        }
+
+        $cashPaymentTbl = TableRegistry::getTableLocator()->get('CashPayments');
+        $cps = $cashPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($cps as $cp) {
+            $results[] = ['type' => 'CashPayment', 'id' => $cp->id, 'result' => $this->postCashPayment($cp->id)];
+        }
+
+        $bankReceiptTbl = TableRegistry::getTableLocator()->get('BankReceipts');
+        $brs = $bankReceiptTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($brs as $br) {
+            $results[] = ['type' => 'BankReceipt', 'id' => $br->id, 'result' => $this->postBankReceipt($br->id)];
+        }
+
+        $bankPaymentTbl = TableRegistry::getTableLocator()->get('BankPayments');
+        $bps = $bankPaymentTbl->find()->where(['status' => 'approved'])->all();
+        foreach ($bps as $bp) {
+            $results[] = ['type' => 'BankPayment', 'id' => $bp->id, 'result' => $this->postBankPayment($bp->id)];
+        }
+
         return $results;
     }
 }

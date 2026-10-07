@@ -55,12 +55,51 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-header">Cash Receipts</div>
+                <div class="card-body">
+                    <h2><?= $crUnposted ?></h2>
+                    <small>chưa hạch toán</small><br>
+                    <small>Đã HT: <?= $postedCounts['CashReceipt'] ?></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-header">Cash Payments</div>
+                <div class="card-body">
+                    <h2><?= $cpUnposted ?></h2>
+                    <small>chưa hạch toán</small><br>
+                    <small>Đã HT: <?= $postedCounts['CashPayment'] ?></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-header">Bank Receipts</div>
+                <div class="card-body">
+                    <h2><?= $brUnposted ?></h2>
+                    <small>chưa hạch toán</small><br>
+                    <small>Đã HT: <?= $postedCounts['BankReceipt'] ?></small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card bg-info text-white mb-3">
+                <div class="card-header">Bank Payments</div>
+                <div class="card-body">
+                    <h2><?= $bpUnposted ?></h2>
+                    <small>chưa hạch toán</small><br>
+                    <small>Đã HT: <?= $postedCounts['BankPayment'] ?></small>
+                </div>
+            </div>
+        </div>
     </div>
-
     <div class="card mb-4 border-danger">
         <div class="card-body text-center">
             <?php
-            $totalUnposted = $grUnposted + $dnUnposted + $piUnposted + $siUnposted + $prUnposted;
+            $totalUnposted = $crUnposted + $cpUnposted + $brUnposted + $bpUnposted + $grUnposted + $dnUnposted + $piUnposted + $siUnposted + $prUnposted;
             if ($totalUnposted > 0):
             ?>
                 <h4>Có <span class="badge bg-danger"><?= $totalUnposted ?></span> chứng từ chưa vào sổ cái</h4>
