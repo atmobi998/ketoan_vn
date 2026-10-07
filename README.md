@@ -242,6 +242,13 @@ MIT License - xem file [LICENSE](LICENSE)
 
 ### Changelog
 
+**v331.0 (2026-10-07)**
+- Thêm hạch toán tự động bảng lương (Payroll): Nợ 622/627/641/642 / Có 334, 3383, 3384, 3386, 3335
+- Thêm Command --type=payroll và postPayrollMonth()
+- Thêm Dashboard /admin/gl-status với thẻ Payroll + tổng tiền chưa HT
+- Fix whereNotExists() -> NOT IN subquery cho CakePHP 5
+- Full auto GL: GR + DN + PINV + SINV + PAYROLL chạy 1 lần
+
 **v303.1-FIXED (2026-10-07)**
 - Fix `Undefined method begin()` - chuyển sang `transactional()`
 - Tự động hạch toán GR/DN vào sổ cái
