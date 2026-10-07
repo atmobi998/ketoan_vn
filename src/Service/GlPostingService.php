@@ -158,7 +158,7 @@ class GlPostingService
 
     public function postDeliveryNote(int $dnId, bool $force = false): array
     {
-        if (!$force && $this->hasPosted('DeliveryNote', $dnId)) {
+        if (!$force && $this->hasPosted('DeliveryNote_COGS', $dnId)) {
             return ['status' => 'skipped', 'message' => 'Đã hạch toán giá vốn rồi'];
         }
         $dnTbl = TableRegistry::getTableLocator()->get('DeliveryNotes');
@@ -199,7 +199,7 @@ class GlPostingService
                 $je->total_credit = $dn->total_amount;
                 $je->status = 'posted';
                 $je->accounting_period_id = $periodId;
-                $je->reference_type = 'DeliveryNote';
+                $je->reference_type = 'DeliveryNote_COGS';
                 $je->reference_id = (string)$dnId;
                 $je->created_by = 1;
 

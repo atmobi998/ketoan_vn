@@ -32,6 +32,18 @@ class PostMissingGlEntriesCommand extends Command
         $io->out('=== Bắt đầu hạch toán các chứng từ chưa vào sổ cái ===');
         $io->out("Loại: $type | Force: " . ($force ? 'YES' : 'NO'));
 
+        // 5. Payrolls - Bảng lương (MỚI)
+        if (in_array($type, ['all', 'payroll'])) {
+            $prTbl = $this->fetchTable('Payrolls');
+            $prs = $prTbl->find()->where(['status IN' => ['approved','paid']])->orderBy(['Payrolls.accounting_period_id' => 'ASC'])->all();
+            $io->out("\n-- Bảng lương (Payroll) --");
+            $io->out("Định khoản: Nợ 622/627/641/642 / Có 334, 3383, 3384, 3386, 3335");
+            foreach ($prs as $pr) {
+                $res = $service->postPayroll($pr->id, $force);
+                $io->out("PAYROLL #{$pr->id} {$pr->payroll_code} (T{$pr->payroll_month}/{$pr->payroll_year} - Dept {$pr->department_id}): {$res['status']} - ".($res['message'] ?? $res['entry_number'] ?? ''));
+            }
+        }
+
         // 1. Goods Receipts - Nhập kho
         if (in_array($type, ['all', 'gr'])) {
             $grTbl = $this->fetchTable('GoodsReceipts');
@@ -73,18 +85,6 @@ class PostMissingGlEntriesCommand extends Command
             foreach ($sis as $si) {
                 $res = $service->postSalesInvoice($si->id, $force);
                 $io->out("SINV #{$si->id} {$si->invoice_number}: {$res['status']} - ".($res['message'] ?? $res['entry_number'] ?? ''));
-            }
-        }
-
-        // 5. Payrolls - Bảng lương (MỚI)
-        if (in_array($type, ['all', 'payroll'])) {
-            $prTbl = $this->fetchTable('Payrolls');
-            $prs = $prTbl->find()->where(['status IN' => ['approved','paid']])->orderBy(['payroll_year' => 'ASC', 'payroll_month' => 'ASC', 'department_id' => 'ASC'])->all();
-            $io->out("\n-- Bảng lương (Payroll) --");
-            $io->out("Định khoản: Nợ 622/627/641/642 / Có 334, 3383, 3384, 3386, 3335");
-            foreach ($prs as $pr) {
-                $res = $service->postPayroll($pr->id, $force);
-                $io->out("PAYROLL #{$pr->id} {$pr->payroll_code} (T{$pr->payroll_month}/{$pr->payroll_year} - Dept {$pr->department_id}): {$res['status']} - ".($res['message'] ?? $res['entry_number'] ?? ''));
             }
         }
 
