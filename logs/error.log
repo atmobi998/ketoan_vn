@@ -1,0 +1,1519 @@
+2026-09-28 08:27:46 error: [InvalidArgumentException] Expression `Payrolls.payroll_month` has invalid `null` value. If `null` is a valid value, operator (IS, IS NOT, IS DISTINCT FROM, IS NOT DISTINCT FROM) is missing. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Expression/QueryExpression.php on line 829
+Stack Trace:
+- CORE/src/Database/Expression/QueryExpression.php:732
+- CORE/src/Database/Expression/QueryExpression.php:131
+- CORE/src/Database/Query.php:1793
+- CORE/src/Database/Query.php:936
+- APP/Controller/PayrollsController.php:104
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/updatepayroll/2026-09
+Client IP: 192.168.1.79
+2026-09-28 10:40:27 error: [InvalidArgumentException] Cannot convert value `Array
+(
+    [0] => present
+    [1] => late
+)
+` of type `array` to string in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Type/StringType.php on line 52
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:112
+- CORE/src/Database/Statement/Statement.php:91
+- CORE/src/Database/ValueBinder.php:148
+- CORE/src/Database/Driver/Mysql.php:233
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- APP/Controller/PayrollsController.php:162
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/updatepayroll/2026-09
+Referer URL: https://old.streetplan.net/payrolls
+Client IP: 192.168.1.79
+2026-09-28 10:40:30 error: [InvalidArgumentException] Cannot convert value `Array
+(
+    [0] => present
+    [1] => late
+)
+` of type `array` to string in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Type/StringType.php on line 52
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:112
+- CORE/src/Database/Statement/Statement.php:91
+- CORE/src/Database/ValueBinder.php:148
+- CORE/src/Database/Driver/Mysql.php:233
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- APP/Controller/PayrollsController.php:162
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/updatepayroll/2026-09
+Referer URL: https://old.streetplan.net/payrolls
+Client IP: 192.168.1.79
+2026-09-28 10:41:53 error: [InvalidArgumentException] Cannot convert value `Array
+(
+    [0] => present
+    [1] => late
+)
+` of type `array` to string in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Type/StringType.php on line 52
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:112
+- CORE/src/Database/Statement/Statement.php:91
+- CORE/src/Database/ValueBinder.php:148
+- CORE/src/Database/Driver/Mysql.php:233
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- APP/Controller/PayrollsController.php:162
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/updatepayroll/2026-09
+Referer URL: https://old.streetplan.net/payrolls
+Client IP: 192.168.1.79
+2026-09-28 10:41:57 error: [InvalidArgumentException] Cannot convert value `Array
+(
+    [0] => present
+    [1] => late
+)
+` of type `array` to string in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Type/StringType.php on line 52
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:112
+- CORE/src/Database/Statement/Statement.php:91
+- CORE/src/Database/ValueBinder.php:148
+- CORE/src/Database/Driver/Mysql.php:233
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- APP/Controller/PayrollsController.php:162
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/updatepayroll/2026-09
+Referer URL: https://old.streetplan.net/payrolls
+Client IP: 192.168.1.79
+2026-09-28 10:44:04 error: [Error] Call to undefined method Cake\Database\Expression\QueryExpression::or_() in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PayrollsController.php on line 160
+Stack Trace:
+- CORE/src/Database/Query.php:1789
+- CORE/src/Database/Query.php:936
+- APP/Controller/PayrollsController.php:156
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/updatepayroll/2026-09
+Referer URL: https://old.streetplan.net/payrolls
+Client IP: 192.168.1.79
+2026-09-29 11:20:48 error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table `delivery_notes` with primary key `[NULL]`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 1641
+Stack Trace:
+- APP/Controller/DeliveryNotesController.php:185
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /delivery-notes/editdetail/8
+Referer URL: https://old.streetplan.net/delivery-notes/editdetail/8
+Client IP: 192.168.1.79
+2026-09-29 11:20:55 error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table `delivery_notes` with primary key `[NULL]`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 1641
+Stack Trace:
+- APP/Controller/DeliveryNotesController.php:185
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /delivery-notes/editdetail/8
+Referer URL: https://old.streetplan.net/delivery-notes/editdetail/8
+Client IP: 192.168.1.79
+2026-09-29 11:22:22 error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table `delivery_notes` with primary key `[NULL]`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 1641
+Stack Trace:
+- APP/Controller/DeliveryNotesController.php:185
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /delivery-notes/editdetail/8
+Referer URL: https://old.streetplan.net/delivery-notes/editdetail/8
+Client IP: 192.168.1.79
+2026-09-30 16:20:55 error: [TypeError] array_keys(): Argument #1 ($array) must be of type array, null given in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/GoodsReceiptsController.php on line 114
+Stack Trace:
+- APP/Controller/GoodsReceiptsController.php:114
+- APP/Controller/GoodsReceiptsController.php:92
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/view/5
+Referer URL: https://old.streetplan.net/goods_receipts
+Client IP: 192.168.1.79
+2026-09-30 16:21:53 error: [TypeError] array_keys(): Argument #1 ($array) must be of type array, null given in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/GoodsReceiptsController.php on line 115
+Stack Trace:
+- APP/Controller/GoodsReceiptsController.php:115
+- APP/Controller/GoodsReceiptsController.php:93
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/view/5
+Referer URL: https://old.streetplan.net/goods_receipts
+Client IP: 192.168.1.79
+2026-09-30 16:24:48 error: [TypeError] array_keys(): Argument #1 ($array) must be of type array, null given in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/GoodsReceiptsController.php on line 115
+Stack Trace:
+- APP/Controller/GoodsReceiptsController.php:115
+- APP/Controller/GoodsReceiptsController.php:93
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/view/5
+Referer URL: https://old.streetplan.net/goods_receipts
+Client IP: 192.168.1.79
+2026-09-30 16:26:15 error: [TypeError] array_keys(): Argument #1 ($array) must be of type array, null given in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/GoodsReceiptsController.php on line 115
+Stack Trace:
+- APP/Controller/GoodsReceiptsController.php:115
+- APP/Controller/GoodsReceiptsController.php:93
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/view/5
+Referer URL: https://old.streetplan.net/goods_receipts
+Client IP: 192.168.1.79
+2026-10-01 04:25:18 error: [Error] Call to a member function format() on null in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PurchaseOrdersController.php on line 109
+Stack Trace:
+- APP/Controller/PurchaseOrdersController.php:94
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /purchase-orders/view/5
+Referer URL: https://old.streetplan.net/purchase_orders
+Client IP: 192.168.1.79
+2026-10-01 04:42:40 error: [Error] Call to a member function format() on null in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PurchaseInvoicesController.php on line 107
+Stack Trace:
+- APP/Controller/PurchaseInvoicesController.php:92
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /purchase-invoices/view/7
+Referer URL: https://old.streetplan.net/purchase-invoices/edit/7
+Client IP: 192.168.1.79
+2026-10-01 06:20:33 error: [Cake\Database\Exception\QueryException] [default] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'GoodsReceiptDetails.unit_id' in 'ON'
+Query: SELECT GoodsReceiptDetails.id AS GoodsReceiptDetails__id, GoodsReceiptDetails.goods_receipt_id AS GoodsReceiptDetails__goods_receipt_id, GoodsReceiptDetails.product_id AS GoodsReceiptDetails__product_id, GoodsReceiptDetails.quantity AS GoodsReceiptDetails__quantity, GoodsReceiptDetails.unit_price AS GoodsReceiptDetails__unit_price, GoodsReceiptDetails.amount AS GoodsReceiptDetails__amount, GoodsReceiptDetails.vat_rate AS GoodsReceiptDetails__vat_rate, GoodsReceiptDetails.vat_amount AS GoodsReceiptDetails__vat_amount, GoodsReceiptDetails.lot_number AS GoodsReceiptDetails__lot_number, GoodsReceiptDetails.expiry_date AS GoodsReceiptDetails__expiry_date, GoodsReceiptDetails.created AS GoodsReceiptDetails__created, GoodsReceiptDetails.modified AS GoodsReceiptDetails__modified, GoodsReceipts.id AS GoodsReceipts__id, GoodsReceipts.gr_number AS GoodsReceipts__gr_number, GoodsReceipts.receipt_date AS GoodsReceipts__receipt_date, GoodsReceipts.purchase_order_id AS GoodsReceipts__purchase_order_id, GoodsReceipts.supplier_id AS GoodsReceipts__supplier_id, GoodsReceipts.warehouse_id AS GoodsReceipts__warehouse_id, GoodsReceipts.total_amount AS GoodsReceipts__total_amount, GoodsReceipts.vat_amount AS GoodsReceipts__vat_amount, GoodsReceipts.discount_amount AS GoodsReceipts__discount_amount, GoodsReceipts.grand_total AS GoodsReceipts__grand_total, GoodsReceipts.status AS GoodsReceipts__status, GoodsReceipts.notes AS GoodsReceipts__notes, GoodsReceipts.created_by AS GoodsReceipts__created_by, GoodsReceipts.created AS GoodsReceipts__created, GoodsReceipts.modified AS GoodsReceipts__modified, Products.id AS Products__id, Products.code AS Products__code, Products.name AS Products__name, Products.product_category_id AS Products__product_category_id, Products.unit_id AS Products__unit_id, Products.description AS Products__description, Products.price_buy AS Products__price_buy, Products.price_sell AS Products__price_sell, Products.vat_rate AS Products__vat_rate, Products.stock_min AS Products__stock_min, Products.stock_max AS Products__stock_max, Products.image AS Products__image, Products.is_active AS Products__is_active, Products.created AS Products__created, Products.modified AS Products__modified, Units.id AS Units__id, Units.code AS Units__code, Units.name AS Units__name, Units.description AS Units__description, Units.created AS Units__created, Units.modified AS Units__modified FROM goods_receipt_details GoodsReceiptDetails LEFT JOIN goods_receipts GoodsReceipts ON GoodsReceipts.id = GoodsReceiptDetails.goods_receipt_id LEFT JOIN products Products ON Products.id = GoodsReceiptDetails.product_id LEFT JOIN units Units ON Units.id = GoodsReceiptDetails.unit_id WHERE GoodsReceiptDetails.goods_receipt_id = 3 LIMIT 250 OFFSET 0 in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Driver.php on line 391
+Stack Trace:
+- CORE/src/Database/Driver.php:338
+- CORE/src/Database/Driver/Mysql.php:238
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/Datasource/Paging/NumericPaginator.php:321
+- CORE/src/Datasource/Paging/NumericPaginator.php:251
+- CORE/src/Controller/Controller.php:913
+- APP/Controller/GoodsReceiptsController.php:250
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'GoodsReceiptDetails.unit_id' in 'ON' in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 143
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:143
+- CORE/src/Database/Driver.php:336
+- CORE/src/Database/Driver/Mysql.php:238
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/Datasource/Paging/NumericPaginator.php:321
+- CORE/src/Datasource/Paging/NumericPaginator.php:251
+- CORE/src/Controller/Controller.php:913
+- APP/Controller/GoodsReceiptsController.php:250
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/edit/3
+Referer URL: https://old.streetplan.net/goods-receipts/editdetail/8
+Client IP: 192.168.1.79
+2026-10-01 07:33:46 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payroll_details`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/PayrollsController.php:232
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:34:20 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payroll_details`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/PayrollsController.php:232
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:36:16 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payroll_details`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/PayrollsController.php:232
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:37:56 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payroll_details`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/PayrollsController.php:232
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:38:04 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payroll_details`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/PayrollsController.php:232
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:38:13 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payroll_details`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/PayrollsController.php:232
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:39:08 error: [Error] Call to a member function format() on null in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PayrollsController.php on line 282
+Stack Trace:
+- APP/Controller/PayrollsController.php:267
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-01 07:51:55 error: [TypeError] Cake\I18n\Number::format(): Argument #1 ($value) must be of type string|int|float, null given, called in /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PayrollsController.php on line 258 in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/I18n/Number.php on line 186
+Stack Trace:
+- APP/Controller/PayrollsController.php:258
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /payrolls/view/965
+Referer URL: https://old.streetplan.net/payrolls/edit/965
+Client IP: 192.168.1.79
+2026-10-02 16:43:05 error: [Cake\Database\Exception\QueryException] [default] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'amount' in 'SELECT'
+Query: SELECT SUM(amount) AS total FROM production_order_materials ProductionOrderMaterials WHERE (ProductionOrderCosts.production_order_id = '3' AND ProductionOrderCosts.cost_type = 'labor') LIMIT 1 in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Driver.php on line 391
+Stack Trace:
+- CORE/src/Database/Driver.php:338
+- CORE/src/Database/Driver/Mysql.php:238
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- APP/Controller/CostCalculationsController.php:126
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'amount' in 'SELECT' in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 143
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:143
+- CORE/src/Database/Driver.php:336
+- CORE/src/Database/Driver/Mysql.php:238
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- APP/Controller/CostCalculationsController.php:126
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /cost-calculations/edit/2
+Referer URL: https://old.streetplan.net/cost_calculations
+Client IP: 192.168.1.79
+2026-10-03 05:06:18 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `production_orders`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/ProductionOrdersController.php:203
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/getprodord/1
+Client IP: 192.168.1.79
+2026-10-03 05:06:39 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `production_orders`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Controller/ProductionOrdersController.php:203
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/getprodord/1
+Client IP: 192.168.1.79
+2026-10-03 05:23:45 error: [InvalidArgumentException] Expression `ProductionOrderMaterials.production_order_id` has invalid `null` value. If `null` is a valid value, operator (IS, IS NOT, IS DISTINCT FROM, IS NOT DISTINCT FROM) is missing. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Expression/QueryExpression.php on line 829
+Stack Trace:
+- CORE/src/Database/Expression/QueryExpression.php:732
+- CORE/src/Database/Expression/QueryExpression.php:131
+- CORE/src/Database/Query.php:1793
+- CORE/src/Database/Query.php:936
+- APP/Controller/ProductionOrdersController.php:206
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/getprodord/3
+Client IP: 192.168.1.79
+2026-10-03 05:39:02 error: [Cake\Controller\Exception\FormProtectionException] Form tampering protection token validation failed. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/Component/FormProtectionComponent.php on line 187
+Stack Trace:
+- CORE/src/Controller/Component/FormProtectionComponent.php:110
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:90
+- CORE/src/Controller/Controller.php:624
+- CORE/src/Controller/ControllerFactory.php:158
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/getprodord/3
+Referer URL: https://old.streetplan.net/cost-calculations/edit/2
+Client IP: 192.168.1.79
+2026-10-03 07:21:40 error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table `boms` with primary key `[NULL]`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 1641
+Stack Trace:
+- APP/Controller/BomsController.php:121
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /boms/edit
+Referer URL: https://old.streetplan.net/production-orders/edit/3
+Client IP: 192.168.1.79
+2026-10-05 10:48:49 error: [Cake\Database\Exception\QueryException] [default] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'last_import_price' cannot be null
+Query: INSERT INTO inventories (product_id, warehouse_id, quantity, last_import_price, created, modified) VALUES (2, 1, 0, NULL, '2026-10-05 10:48:49', '2026-10-05 10:48:49') in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Driver.php on line 391
+Stack Trace:
+- CORE/src/Database/Driver.php:338
+- CORE/src/Database/Driver/Mysql.php:243
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/ORM/Table.php:2329
+- CORE/src/ORM/Table.php:2222
+- CORE/src/ORM/Table.php:2113
+- CORE/src/Database/Connection.php:718
+- CORE/src/ORM/Table.php:1717
+- CORE/src/ORM/Table.php:2112
+- APP/Controller/GoodsReceiptsController.php:259
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'last_import_price' cannot be null in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 143
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:143
+- CORE/src/Database/Driver.php:336
+- CORE/src/Database/Driver/Mysql.php:243
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/ORM/Table.php:2329
+- CORE/src/ORM/Table.php:2222
+- CORE/src/ORM/Table.php:2113
+- CORE/src/Database/Connection.php:718
+- CORE/src/ORM/Table.php:1717
+- CORE/src/ORM/Table.php:2112
+- APP/Controller/GoodsReceiptsController.php:259
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/edit/6
+Referer URL: https://old.streetplan.net/goods-receipts/edit/6
+Client IP: 192.168.1.79
+2026-10-05 10:50:29 error: [Cake\Database\Exception\QueryException] [default] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'last_import_price' cannot be null
+Query: INSERT INTO inventories (product_id, warehouse_id, quantity, last_import_price, created, modified) VALUES (2, 1, 0, NULL, '2026-10-05 10:50:29', '2026-10-05 10:50:29') in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Driver.php on line 391
+Stack Trace:
+- CORE/src/Database/Driver.php:338
+- CORE/src/Database/Driver/Mysql.php:243
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/ORM/Table.php:2329
+- CORE/src/ORM/Table.php:2222
+- CORE/src/ORM/Table.php:2113
+- CORE/src/Database/Connection.php:718
+- CORE/src/ORM/Table.php:1717
+- CORE/src/ORM/Table.php:2112
+- APP/Controller/GoodsReceiptsController.php:259
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'last_import_price' cannot be null in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 143
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:143
+- CORE/src/Database/Driver.php:336
+- CORE/src/Database/Driver/Mysql.php:243
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/ORM/Table.php:2329
+- CORE/src/ORM/Table.php:2222
+- CORE/src/ORM/Table.php:2113
+- CORE/src/Database/Connection.php:718
+- CORE/src/ORM/Table.php:1717
+- CORE/src/ORM/Table.php:2112
+- APP/Controller/GoodsReceiptsController.php:259
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/edit/6
+Referer URL: https://old.streetplan.net/goods-receipts/edit/6
+Client IP: 192.168.1.79
+2026-10-05 10:50:32 error: [Cake\Database\Exception\QueryException] [default] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'last_import_price' cannot be null
+Query: INSERT INTO inventories (product_id, warehouse_id, quantity, last_import_price, created, modified) VALUES (2, 1, 0, NULL, '2026-10-05 10:50:32', '2026-10-05 10:50:32') in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Driver.php on line 391
+Stack Trace:
+- CORE/src/Database/Driver.php:338
+- CORE/src/Database/Driver/Mysql.php:243
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/ORM/Table.php:2329
+- CORE/src/ORM/Table.php:2222
+- CORE/src/ORM/Table.php:2113
+- CORE/src/Database/Connection.php:718
+- CORE/src/ORM/Table.php:1717
+- CORE/src/ORM/Table.php:2112
+- APP/Controller/GoodsReceiptsController.php:259
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'last_import_price' cannot be null in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 143
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:143
+- CORE/src/Database/Driver.php:336
+- CORE/src/Database/Driver/Mysql.php:243
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/ORM/Table.php:2329
+- CORE/src/ORM/Table.php:2222
+- CORE/src/ORM/Table.php:2113
+- CORE/src/Database/Connection.php:718
+- CORE/src/ORM/Table.php:1717
+- CORE/src/ORM/Table.php:2112
+- APP/Controller/GoodsReceiptsController.php:259
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /goods-receipts/edit/6
+Referer URL: https://old.streetplan.net/goods-receipts
+Client IP: 192.168.1.79
+2026-10-05 12:46:58 error: [Cake\Database\Exception\QueryException] [default] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ProductionOrderMaterials.production_order_id' in 'WHERE'
+Query: SELECT ProductionOrders.id AS ProductionOrders__id, ProductionOrders.po_number AS ProductionOrders__po_number, ProductionOrders.bom_id AS ProductionOrders__bom_id, ProductionOrders.product_id AS ProductionOrders__product_id, ProductionOrders.quantity_planned AS ProductionOrders__quantity_planned, ProductionOrders.quantity_produced AS ProductionOrders__quantity_produced, ProductionOrders.start_date AS ProductionOrders__start_date, ProductionOrders.end_date AS ProductionOrders__end_date, ProductionOrders.status AS ProductionOrders__status, ProductionOrders.cost_center_id AS ProductionOrders__cost_center_id, ProductionOrders.sync_inv AS ProductionOrders__sync_inv, ProductionOrders.created_by AS ProductionOrders__created_by, ProductionOrders.created AS ProductionOrders__created, ProductionOrders.modified AS ProductionOrders__modified FROM production_orders ProductionOrders WHERE ProductionOrderMaterials.production_order_id = '3' in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Driver.php on line 391
+Stack Trace:
+- CORE/src/Database/Driver.php:338
+- CORE/src/Database/Driver/Mysql.php:238
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- APP/Controller/ProductionOrdersController.php:227
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ProductionOrderMaterials.production_order_id' in 'WHERE' in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 143
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:143
+- CORE/src/Database/Driver.php:336
+- CORE/src/Database/Driver/Mysql.php:238
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- APP/Controller/ProductionOrdersController.php:227
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/edit/3
+Referer URL: https://old.streetplan.net/production_orders
+Client IP: 192.168.1.79
+2026-10-05 14:35:56 error: [InvalidArgumentException] Expression `Inventories.warehouse_id` has invalid `null` value. If `null` is a valid value, operator (IS, IS NOT, IS DISTINCT FROM, IS NOT DISTINCT FROM) is missing. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Expression/QueryExpression.php on line 829
+Stack Trace:
+- CORE/src/Database/Expression/QueryExpression.php:732
+- CORE/src/Database/Expression/QueryExpression.php:131
+- CORE/src/Database/Query.php:1793
+- CORE/src/Database/Query.php:936
+- APP/Controller/ProductionOrdersController.php:231
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/edit/3
+Referer URL: https://old.streetplan.net/production-orders/adddetail/3
+Client IP: 192.168.1.79
+2026-10-05 14:36:35 error: [InvalidArgumentException] Expression `Inventories.warehouse_id` has invalid `null` value. If `null` is a valid value, operator (IS, IS NOT, IS DISTINCT FROM, IS NOT DISTINCT FROM) is missing. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Expression/QueryExpression.php on line 829
+Stack Trace:
+- CORE/src/Database/Expression/QueryExpression.php:732
+- CORE/src/Database/Expression/QueryExpression.php:131
+- CORE/src/Database/Query.php:1793
+- CORE/src/Database/Query.php:936
+- APP/Controller/ProductionOrdersController.php:231
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/edit/3
+Referer URL: https://old.streetplan.net/production-orders/adddetail/3
+Client IP: 192.168.1.79
+2026-10-05 14:36:52 error: [InvalidArgumentException] Expression `Inventories.warehouse_id` has invalid `null` value. If `null` is a valid value, operator (IS, IS NOT, IS DISTINCT FROM, IS NOT DISTINCT FROM) is missing. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Database/Expression/QueryExpression.php on line 829
+Stack Trace:
+- CORE/src/Database/Expression/QueryExpression.php:732
+- CORE/src/Database/Expression/QueryExpression.php:131
+- CORE/src/Database/Query.php:1793
+- CORE/src/Database/Query.php:936
+- APP/Controller/ProductionOrdersController.php:231
+- CORE/src/Controller/Controller.php:521
+- CORE/src/Controller/ControllerFactory.php:168
+- CORE/src/Controller/ControllerFactory.php:143
+- CORE/src/Http/BaseApplication.php:384
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:103
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php:132
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/HostHeaderMiddleware.php:56
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:111
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:93
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /production-orders/edit/3
+Referer URL: https://old.streetplan.net/production-orders/adddetail/3
+Client IP: 192.168.1.79

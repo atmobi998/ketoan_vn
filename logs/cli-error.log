@@ -1,0 +1,58 @@
+2026-10-07 06:22:23 error: [InvalidArgumentException] The `GoodsReceiptDetails` association is not defined on `GoodsReceipts`.
+Valid associations are: Suppliers, Warehouses, PurchaseOrders in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 985
+Stack Trace:
+- CORE/src/ORM/EagerLoader.php:490
+- CORE/src/ORM/EagerLoader.php:303
+- CORE/src/ORM/EagerLoader.php:446
+- CORE/src/ORM/EagerLoader.php:417
+- CORE/src/ORM/Query/SelectQuery.php:1681
+- CORE/src/ORM/Query/SelectQuery.php:1620
+- CORE/src/Database/Driver.php:403
+- CORE/src/Database/Driver/Mysql.php:232
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- CORE/src/ORM/Query/SelectQuery.php:604
+- CORE/src/ORM/Table.php:1702
+- APP/Service/GlPostingService.php:72
+- APP/Command/PostMissingGlEntriesCommand.php:31
+- CORE/src/Console/BaseCommand.php:261
+- CORE/src/Console/CommandRunner.php:451
+- CORE/src/Console/CommandRunner.php:205
+- ROOT/bin/cake.php:10
+- [main]:
+
+2026-10-07 06:26:43 error: [InvalidArgumentException] The `PurchaseInvoiceDetails` association is not defined on `PurchaseInvoices`.
+Valid associations are: Suppliers, GoodsReceipts, AccountingPeriods in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Table.php on line 985
+Stack Trace:
+- CORE/src/ORM/EagerLoader.php:490
+- CORE/src/ORM/EagerLoader.php:303
+- CORE/src/ORM/EagerLoader.php:446
+- CORE/src/ORM/EagerLoader.php:417
+- CORE/src/ORM/Query/SelectQuery.php:1681
+- CORE/src/ORM/Query/SelectQuery.php:1620
+- CORE/src/Database/Driver.php:403
+- CORE/src/Database/Driver/Mysql.php:232
+- CORE/src/Database/Connection.php:317
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:317
+- CORE/src/Database/Query.php:239
+- CORE/src/Database/Query/SelectQuery.php:125
+- CORE/src/ORM/Query/SelectQuery.php:1638
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:593
+- CORE/src/ORM/Query/SelectQuery.php:604
+- CORE/src/ORM/Table.php:1702
+- APP/Service/GlPostingService.php:323
+- APP/Command/PostMissingGlEntriesCommand.php:45
+- CORE/src/Console/BaseCommand.php:261
+- CORE/src/Console/CommandRunner.php:451
+- CORE/src/Console/CommandRunner.php:205
+- ROOT/bin/cake.php:10
+- [main]:
+

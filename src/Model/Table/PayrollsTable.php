@@ -1,0 +1,43 @@
+<?php
+namespace App\Model\Table;
+
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
+use Cake\Event\EventInterface;
+use Cake\ORM\Query\SelectQuery;
+use ArrayObject;
+
+class PayrollsTable extends Table
+{
+    public function initialize(array $config): void
+    {
+        parent::initialize($config);
+        $this->setTable('payrolls');
+        $this->setDisplayField('full_name');
+        $this->setPrimaryKey('id');
+        $this->addBehavior('Timestamp');
+        $this->belongsTo('Departments', ['foreignKey' => 'department_id', 'joinType' => 'LEFT']);
+        $this->belongsTo('AccountingPeriods', ['foreignKey' => 'accounting_period_id', 'joinType' => 'LEFT']);
+    }
+
+    public function validationDefault(Validator $validator): Validator
+    {
+        $validator->notEmptyString('payroll_code', 'Không được để trống');
+        $validator->add('payroll_code', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'Đã tồn tại']);
+        $validator->notEmptyString('payroll_month', 'Không được để trống');
+        $validator->notEmptyString('payroll_year', 'Không được để trống');
+        $validator->notEmptyString('total_employees', 'Không được để trống');
+        $validator->notEmptyString('total_amount', 'Không được để trống');
+        $validator->notEmptyString('total_deduction', 'Không được để trống');
+        $validator->notEmptyString('total_net', 'Không được để trống');
+        $validator->notEmptyString('status', 'Không được để trống');
+        return $validator;
+    }
+
+    public function beforeFind(EventInterface $event, SelectQuery $query, ArrayObject $options, $primary)
+    {
+        $query->orderBy(['Payrolls.payroll_code' => 'DESC']);
+    }
+
+
+}

@@ -1,0 +1,77 @@
+{
+    "name":"friendsofcake/crud-json-api",
+    "description":"Listener for building CakePHP Crud APIs following the JSON API specification.",
+    "type":"cakephp-plugin",
+    "keywords":[
+        "cakephp",
+        "crud",
+        "api",
+        "jsonapi",
+        "json api"
+    ],
+    "homepage":"https://github.com/FriendsOfCake/crud-json-api",
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Bravo-Kernel",
+            "role":"Author",
+            "homepage":"http://github.com/bravo-kernel"
+        },
+        {
+            "name":"Marlin Cremers",
+            "role":"Contributor",
+            "homepage":"https://github.com/Marlinc"
+        },
+        {
+            "name":"Walther Lalk",
+            "role":"Contributor",
+            "homepage":"https://github.com/dakota"
+        }
+    ],
+    "require": {
+        "php": ">=8.1.0",
+        "cakephp/cakephp": "^5.0.0",
+        "friendsofcake/crud": "^7.2.0",
+        "laravel-json-api/neomerx-json-api": "^5.0.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5.5 || ^11.1.3 || ^12.0.9",
+        "friendsofcake/cakephp-test-utilities": "^3.0.0",
+        "friendsofcake/search": "^7.0.0",
+        "cakephp/cakephp-codesniffer": "^5.1",
+        "dms/phpunit-arraysubset-asserts": "^0.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CrudJsonApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CrudJsonApi\\Test\\": "tests",
+            "CrudJsonApi\\Test\\App\\": "tests/test_app/src",
+            "Cake\\Test\\Fixture\\": "./vendor/cakephp/cakephp/tests/Fixture"
+        }
+    },
+    "suggest": {
+        "friendsofcake/search": "Provides search capabilities for the Crud plugin."
+    },
+    "support":{
+        "source":"https://github.com/FriendsOfCake/crud-json-api",
+        "issues":"https://github.com/FriendsOfCake/crud-json-api/issues",
+        "wiki":"http://crud.readthedocs.org/en/latest/",
+        "irc":"irc://irc.freenode.org/friendsofcake"
+    },
+    "scripts": {
+        "cs-check": "phpcs -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
+        "cs-fix": "phpcbf --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/",
+        "stan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan:~2.1.17 && mv composer.backup composer.json",
+        "phpstan": "phpstan analyse --memory-limit=3G src/",
+        "test": "phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

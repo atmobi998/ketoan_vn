@@ -1,0 +1,31 @@
+<div class="purchase_invoices form">
+    <h3>Thêm PurchaseInvoices</h3>
+    <?= $this->Form->create($record) ?>
+        <?= $this->Form->control('invoice_number', ['label' => 'Số hóa đơn', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('invoice_date', ['label' => 'Ngày hóa đơn', 'type' => 'date', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('supplier_id', ['label' => 'Nhà cung cấp', 'options' => $related['Suppliers'] ?? [], 'empty' => '-- Chọn --', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('goods_receipt_id', ['label' => 'Phiếu nhập kho', 'options' => $related['GoodsReceipts'] ?? [], 'empty' => '-- Chọn --', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('total_amount', ['label' => 'Tổng tiền', 'class' => 'form-control','OnChange'=>'upd_total_amt();']) ?>
+        <?= $this->Form->control('vat_amount', ['label' => 'Vat Amount', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('discount_amount', ['label' => 'Số tiền chiết khấu', 'class' => 'form-control','OnChange'=>'upd_total_amt();']) ?>
+        <?= $this->Form->control('grand_total', ['label' => 'Tổng cộng', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('payment_due_date', ['label' => 'Hạn thanh toán', 'type' => 'date', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('status', ['label' => 'Trạng thái', 'type' => 'select', 'options' => ['draft' => 'draft', 'approved' => 'approved', 'paid' => 'paid', 'cancelled' => 'cancelled'], 'class' => 'form-control']) ?>
+        <?= $this->Form->control('created_by', ['label' => 'Người tạo', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('accounting_period_id', ['label' => 'Kỳ kế toán', 'options' => $related['AccountingPeriods'] ?? [], 'empty' => '-- Chọn --', 'class' => 'form-control']) ?>
+    <div class="clearfix bg-light p-3"></div>
+    <?= $this->Form->button('Lưu', ['class' => 'btn btn-primary']) ?>
+    <?= $this->Html->link('Quay lại', ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
+    <?= $this->Form->end() ?>
+</div>
+<script>
+function upd_total_amt() {
+    var vat_rate=10.00;
+    var total_amount = parseFloat($('#total-amount').val());
+    var discount_amount = parseFloat($('#discount-amount').val());
+    var vat_amount = total_amount*(vat_rate/100);
+    var grand_total = total_amount + vat_amount - discount_amount;
+    $('#vat-amount').val(vat_amount.toFixed(2));
+    $('#grand-total').val(grand_total.toFixed(2));
+}
+</script>

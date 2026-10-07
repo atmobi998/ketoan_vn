@@ -1,0 +1,91 @@
+2026-09-11 05:17:54 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 05:19:46 notice: Undefined property `PagesController::$Authorization` in `/home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PagesController.php` on line 51 in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/Controller.php on line 332
+Trace:
+Cake\Error\ErrorTrap->handleError() [internal], line ??
+/home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/Controller.php /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/Controller.php, line 332
+Cake\Controller\Controller->__get() /home/streetplan/public_htdocs/old.streetplan.net/src/Controller/PagesController.php, line 51
+App\Controller\PagesController->beforeFilter() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Event/EventManager.php, line 332
+Cake\Event\EventManager->_callListener() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Event/EventManager.php, line 316
+Cake\Event\EventManager->dispatch() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php, line 90
+Cake\Controller\Controller->dispatchEvent() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/Controller.php, line 619
+Cake\Controller\Controller->startupProcess() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 158
+Cake\Controller\ControllerFactory->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 143
+Cake\Controller\ControllerFactory->invoke() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 384
+Cake\Http\BaseApplication->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 86
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 169
+Cake\Http\Middleware\CsrfProtectionMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 103
+Authentication\Middleware\AuthenticationMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/authorization/src/Middleware/AuthorizationMiddleware.php, line 132
+Authorization\Middleware\AuthorizationMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Middleware\BodyParserMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 118
+Cake\Routing\Middleware\RoutingMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 71
+Cake\Routing\Middleware\AssetMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/src/Middleware/HostHeaderMiddleware.php, line 35
+App\Middleware\HostHeaderMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 111
+Cake\Error\Middleware\ErrorHandlerMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+DebugKit\Middleware\DebugKitMiddleware->process() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 82
+Cake\Http\Runner->handle() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Runner.php, line 60
+Cake\Http\Runner->run() /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/Http/Server.php, line 93
+Cake\Http\Server->run() /home/streetplan/public_htdocs/old.streetplan.net/webroot/index.php, line 37
+[main]
+
+Request URL: /
+Client IP: 192.168.1.79
+2026-09-11 05:19:47 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 05:21:10 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 05:21:53 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 05:22:08 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 05:33:15 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 06:46:57 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 06:48:12 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 17:08:18 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-11 17:09:34 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 20:53:44 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 20:54:30 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 20:56:10 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 20:56:31 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 20:57:48 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 20:57:52 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:03:28 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:04:44 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:06:23 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:07:51 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:07:58 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:08:03 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:08:09 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:08:20 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:08:28 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:09:06 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:09:13 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:09:21 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:10:29 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:10:37 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:10:54 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:10:57 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:10:58 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:11:31 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:11:40 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:11:49 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:15:05 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:17:50 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:19:37 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:20:18 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:20:29 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:21:32 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:21:39 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:21:45 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:21:54 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:22:01 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-12 21:22:16 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-14 00:03:51 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-14 00:05:50 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-14 00:08:16 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-14 00:08:18 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-14 00:08:21 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.
+2026-09-14 00:08:22 info: Cake Authorization plugin is enabled. If you would like to force DebugKit to ignore it, set `DebugKit.ignoreAuthorization`  Configure option to true.

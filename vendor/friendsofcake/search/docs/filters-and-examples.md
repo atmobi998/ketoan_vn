@@ -1,0 +1,498 @@
+# Filters
+
+The Search plugin comes with a set of predefined search filters that allow you to
+easily create the search results you need. Use:
+
+----------
+
+`Value` to limit results to exact matches
+
+```php
+// WHERE category_id = $paramFromRequest
+$searchManager->value('category_id');
+```
+
+----------
+
+`Like` to produce results containing the search query (`LIKE` or `ILIKE`)
+
+```php
+// WHERE name LIKE $paramFromRequest
+$searchManager->like('name');
+```
+
+----------
+
+`Boolean` to limit results by truthy (by default: 1, true, '1', 'true', 'yes', 'on')
+and falsy (by default: 0, false, '0', 'false', 'no', 'off') values which are
+passed down to the ORM as true/1 or false/0 or ignored when being neither truthy or falsy.
+
+```php
+// WHERE is_active = 1
+// or
+// WHERE is_active = 0
+$searchManager->boolean('is_active');
+```
+
+----------
+
+`Exists` to produce results for existing (non-empty) column content.
+
+```php
+// WHERE nullable_field IS NOT NULL
+$searchManager->exists('nullable_field');
+```
+
+----------
+
+`Finder` to produce results using a [(custom)](https://book.cakephp.org/5/en/orm/retrieving-data-and-resultsets.html#custom-find-methods) finder
+
+```php
+// executes the findMyFinder() method in your table class
+$searchManager->finder('myFinder');
+```
+
+----------
+
+`Compare` to produce results requiring operator comparison (`>`, `<`, `>=` and `<=` | default: `>=`)
+
+```php
+// WHERE amount >= $paramFromRequest
+$searchManager->compare('amount');
+```
+
+----------
+
+`Callback` to produce results using your own custom callable function, it
+should return bool to specify `isSearch()` (useful when using with `alwaysRun` enabled)
+
+```php
+// Completely up to your code inside the callback
+$searchManager->callback('category_id', [
+        'callback' => function (\Cake\ORM\Query\SelectQuery $query, array $args,  \Search\Model\Filter\Base $filter) {
+            // $args contains the values given in the request
+            // $query->where([]);
+            return true;
+        }
+```
+
+----------
+
+`Mapped` to map form values to filter conditions with support for defaults that don't
+trigger `isSearch()`. Useful for filters with a default value (e.g., "show enabled by
+default") where you don't want the Reset button to appear.
+
+```php
+// Boolean example: default to enabled=true, allow showing all with -1
+$searchManager->mapped('enabled', [
+    'map' => ['' => true, '0' => false, '-1' => null],
+    'default' => '',
+]);
+
+// Enum example: default to 'pending' status, unmapped values pass through
+$searchManager->mapped('status', [
+    'map' => ['' => 'pending', '-1' => null],
+    'default' => '',
+]);
+// Values like 'active', 'completed' pass through directly as filter condition
+```
+
+Key features:
+- Map keys are form values, map values are the condition to apply
+- `null` in map means "no filter condition" (show all)
+- `default` key specifies which value doesn't trigger `isSearch()`
+- Non-empty values not in map pass through directly as filter condition
+- Sets `alwaysRun: true` and `filterEmpty: false` by default
+
+----------
+
+## Multi-field Search Callbacks
+
+When using callback filters that need to access values from multiple form fields,
+be aware that **the `$args` parameter only contains values for fields that have
+configured filters**. This means if you have a callback that depends on multiple
+fields, but only one field has the "real" filter logic, the other field's value
+won't be available in `$args` unless you configure a filter for it.
+
+There are two approaches to handle this:
+
+### Approach 1: Using the 'extraParams' config
+
+You can specify additional params to retain using the `extraParams` config and
+make their values available in the `$args` variable.
+
+**Form fields:**
+```php
+echo $this->Form->control('field_a');
+echo $this->Form->control('field_b');
+```
+
+**Filter configuration:**
+```php
+$searchManager->callback('field_a', [
+    'extraParams' => ['field_b'],
+    'callback' => function (SelectQuery $query, array $args, $filter) {
+        // $args will now contain 'field_b' key if it is passed as a param
+    },
+]);
+```
+
+### Approach 2: Nested Array Fields
+
+Group related fields under a single parent key in your form.
+
+**Form fields:**
+```php
+echo $this->Form->control('search.field_a');
+echo $this->Form->control('search.field_b');
+```
+
+**Filter configuration:**
+```php
+$this->callback('search', [
+    'callback' => function (SelectQuery $query, array $args, $filter) {
+        $fieldA = $args['search']['field_a'] ?? null;
+        $fieldB = $args['search']['field_b'] ?? null;
+
+        if (!$fieldA || !$fieldB) {
+            return false;
+        }
+
+        // Your custom query logic using both field values
+        $query->where([
+            'Model.field_a' => $fieldA,
+            'Model.field_b' => $fieldB,
+        ]);
+
+        return true;
+    },
+]);
+```
+
+**Which approach to use?**
+- Use **nested arrays** when fields are semantically related (e.g., date range with start/end, tag search with options)
+- Use **`extraParams` config** when fields are independent but happen to be used together in one callback
+
+Another use case for `extraParams` is, when you need to inject additional values without going through the URL, e.g. the
+logged-in user data (e.g. `'extraParams' => ['user_id']`):
+```php
+        $identity = $this->request->getAttribute('identity');
+        if ($identity) {
+            $queryParams = $this->request->getQueryParams();
+            $queryParams['user_id'] = $identity->get('id');
+        }
+        $query = $this->Articles->find('search', search: $queryParams);
+```
+The callback then is active on both the primary query string and the passed user id.
+
+----------
+
+## Options
+
+### All filters
+
+The following options are supported by all filters.
+
+- `fields` (`string`, defaults to the name passed to the first argument of the
+  add filter method) The name of the field to use for searching. Use this option
+  if you need to use a name in your forms that doesn't match the actual field name.
+
+- `name` (`string`, defaults to the name passed to the first argument of the add
+  filter method) The name of the field to look up in the request data. Use this
+  option if you need to configure the name of the filter differently than the name
+  of the field, in cases where you can't use the `field` option, for example when it
+  is being used to define multiple fields, which is supported by the `Like` filter.
+
+- `alwaysRun` (`bool`, defaults to `false`) Defines whether the filter should always
+  run, irrespectively of whether the corresponding field exists in the request data.
+
+- `filterEmpty` (`bool`, defaults to `false`) Defines whether the filter should not
+  run in case the corresponding field in the request is empty. Refer to
+  [the Optional fields section](#optional-fields) for additional details.
+
+- `flatten` (`bool`, defaults to `true`) Defines whether values passed from the
+  the input form as arrays should be flattened. If the structure of the value array
+  should be maintained to ease parsing the passed data with your chosen filter,
+  set this to `false`.
+
+- `beforeProcess` (`callable`, defaults to `null`) A callable which can be used
+  to modify the query before the main `process()` method of filter is run.
+  It receives `$query` and `$args` as arguments. You can use the callback for e.g.
+  to setup joins or contains on the query. If the callback returns `false` then
+  processing of the filter will be skipped. If it returns `array` it will be used
+  as filter arguments.
+
+    ```php
+    // PostsTable::initialize()
+    $searchManager->like('q', [
+        'fields' => ['Posts.title', 'Authors.title'],
+        'beforeProcess' => function (\Cake\ORM\Query\SelectQuery $query, array $args, \Search\Model\Filter\Base $filter) {
+            $query->contain('Authors');
+        },
+    ]);
+    ```
+
+The following options are supported by all filters except `Callback` and `Finder`.
+
+- `aliasField` (`bool`, defaults to `true`) Defines whether the field name should
+  be aliased with respect to the alias used by the table class to which the behavior
+  is attached to.
+
+- `defaultValue` (`mixed`, defaults to `null`) The default value that is being
+  used in case the value passed for the corresponding field is invalid or missing.
+
+### `Boolean`
+
+- `mode` (`string`, defaults to `OR`) The conditional mode to use when matching
+  against multiple fields. Valid values are `OR` and `AND`.
+
+### `Exists`
+
+- `mode` (`string`, defaults to `OR`) The conditional mode to use when matching
+  against multiple fields. Valid values are `OR` and `AND`.
+- `nullValue` (`string` or `null`, defaults to `null`). Can be used for non-nullable columns.
+  Set it to an empty string there to check via `=`/`!=` instead of `IS NULL`/`IS NOT NULL`.
+
+### `Compare`
+
+- `operator` (`string`, defaults to `>=`) The operator to use for comparison. Valid
+  values are `>=`, `<=`, `>` and `<`.
+
+- `mode` (`string`, defaults to `AND`) The conditional mode to use when matching
+  against multiple fields. Valid values are `OR` and `AND`.
+
+### `Like`
+
+- `multiValue` (`bool`, defaults to `false`) Defines whether the filter accepts
+  multiple values. If disabled, and multiple values are being passed, the filter
+  will fall back to using the default value defined by the `defaultValue` option.
+
+- `multiValueSeparator` (`string`, defaults to `null`) Defines whether the filter should
+  auto-tokenize multiple values using a specific separator string. If disabled, the data
+  must be an in form of an array.
+
+- `multiValueExactMatching` (`true|string`, defaults to `null`) If enabled, this will match
+  phrases using a matching character (defaults to `"`). You can also define one yourself.
+  Note: This only works for `multiValueSeparator` set to a single space as character.
+
+- `field` (`string|array`), defaults to the name passed to the first argument of the
+  add filter method) The name of the field to use for searching. Works like the base
+  `field` option but also accepts multiple field names as an array. When defining
+  multiple fields, the search term is going to be looked up in all the given fields,
+  using the conditional operator defined by the `fieldMode` option.
+
+- `colType` (`array`), An associative array, use to set a custom type for any
+  column that needs to be treated as string column despite its actual type.
+  This is important for integer fields, for example, if they are part of the
+  fields to be searched. Usage example:
+  `'colType' => ['id' => 'string']`
+
+- `before` (`bool`, defaults to `false`) Whether to automatically add a wildcard
+  *before* the search term.
+
+- `after` (`bool`, defaults to `false`) Whether to automatically add a wildcard
+  *after* the search term.
+
+- `fieldMode` (`string`, defaults to `OR`) The conditional mode to use when
+  matching against multiple fields. Valid values are `OR` and `AND`.
+
+- `valueMode` (`string`, defaults to `OR`) The conditional mode to use when
+  searching for multiple values. Valid values are `OR` and `AND`.
+
+- `comparison` (`string`, defaults to `LIKE`) The comparison operator to use.
+
+- `wildcardAny` (`string`, defaults to `*`) Defines the string that should be
+  treated as a _any_ wildcard in case it is being encountered in the search term.
+  The behavior will internally replace this with the appropriate SQL compatible
+  wildcard. This is useful if you want to pass wildcards inside of the search term,
+  while still being able to use the actual wildcard character inside of the search
+  term so that it is being treated as a part of the term. For example a search term
+  of `* has reached 100%` would be converted to `% has reached 100\%`.
+  Additionally see option `escapeDriver`.
+
+- `wildcardOne` (`string`, defaults to `?`) Defines the string that should be
+  treated as a _one_ wildcard in case it is being encountered in the search term.
+  Behaves similar to `wildcardAny`, that is, the actual SQL compatible wildcard
+  (`_`) is being escaped in case used the search term.
+
+- `escaper` (`string`, default to `null`) Defines the escaper that should
+  escape `%` and `_`. If no escaper is set (the default) the escaper is
+  resolved from the active database driver via the `escapers` map (see
+  below). You can pin a specific escaper for a filter by setting this option
+  (e.g. `'escaper' => 'App.Own'`) — the active driver is then ignored.
+
+- `escapers` (`array<string, string>`, defaults to a built-in map) Maps a
+  Cake `Driver` class name to an escaper class spec (Cake plugin-syntax,
+  e.g. `Search.Sqlserver`). Used when `escaper` is left at `null`. The
+  shipped defaults are:
+
+  - `Cake\Database\Driver\Sqlserver::class => 'Search.Sqlserver'`
+  - `Cake\Database\Driver\Postgres::class => 'Search.Postgres'`
+
+  Apps register custom escapers by extending this map at filter setup
+  without needing to subclass the filter:
+
+  ```php
+  use App\Database\Driver\MyMariaDb;
+
+  $searchManager->like('title', [
+      'escapers' => [
+          MyMariaDb::class => 'App.MyMariaDb',
+      ],
+  ]);
+  ```
+
+  Match is done via `instanceof`, so a subclassed driver still resolves
+  correctly. Entries are evaluated in iteration order; list more specific
+  driver classes before less specific ones. When no entry matches the active
+  driver, `Search.Default` is used (escaping `%` to `\%` and `_` to `\_`).
+
+  The default `SqlserverEscaper` escapes `%` to `[%]` and `_` to `[_]`. The
+  default `PostgresEscaper` currently inherits from `DefaultEscaper`; it
+  exists so Postgres-specific rules can diverge in future without breaking
+  the public API.
+
+  Register your own escaper by adding a class in
+  `App\Model\Filter\Escaper\OwnEscaper` implementing `EscaperInterface`.
+
+### `Value`
+
+- `multiValue` (`bool`, defaults to `false`) Defines whether the filter accepts
+  multiple values. If disabled, and multiple values are being passed, the filter
+  will fall back to using the default value defined by the `defaultValue` option.
+
+- `multiValueSeparator` (`string`, defaults to `null`) Defines whether the filter should
+  auto-tokenize multiple values using a specific separator string. If disabled, the data
+  must be an in form of an array.
+
+- `mode` (`string`, defaults to `OR`) The conditional mode to use when matching
+  against multiple fields. Valid values are `OR` and `AND`.
+
+- `negationChar` (`string`, defaults to `null`) An alternative to `multiValue`,
+  especially if you have a lot of values. The filter accepts any string, but it
+  should ideally be a single and unique char as prefix for your search value.
+  E.g. `!` for string values or `-` for numeric values. If enabled, the filter
+  will negate the expression for this value.
+
+### `Mapped`
+
+- `map` (`array`, defaults to `[]`) An associative array mapping form values to filter
+  conditions. Keys are form values (strings), values are the conditions to apply.
+  Use `null` as a value to mean "no filter condition" (show all records).
+
+- `default` (`string|null`, defaults to `null`) The form value that should be treated
+  as the default. When the default value is used, `isSearch()` returns false (no
+  Reset button appears).
+
+Note: The `Mapped` filter sets `alwaysRun: true` and `filterEmpty: false` by default.
+Any non-empty form value not found in the `map` will pass through directly as the
+filter condition, making this useful for enum fields where only specific values
+need special handling.
+
+### `Finder`
+
+- `finder` (`string`, defaults to the filter name) The [find type](https://book.cakephp.org/4/en/orm/retrieving-data-and-resultsets.html#custom-finder-methods) to use.
+
+- `map` (`array`, defaults to `[]`) Config array if you need to map your field
+  to a finder key (`'to_field' => 'from_field'`).
+
+- `options` (`array`, defaults to `[]`) Additional options to pass to the finder.
+
+- `cast` (`array`, defaults to `[]`) Additional casts to be used on the (mapped
+  field values. You can use `'int'`, `'bool'`, `'float'`, etc as strings. You can also
+  use callable functions like `function ($value) { ... }` for more complex scenarios.
+
+## Filtering by `belongsToMany` and `hasMany` associations
+
+If you want to filter values related to a `belongsToMany` or `hasMany` association,
+your best option is to use a `callback` like so:
+
+```php
+$searchManager
+    ->callback('category_id', [
+        'callback' => function (\Cake\ORM\Query\SelectQuery $query, array $args,  \Search\Model\Filter\Base $filter) {
+            $query
+                ->innerJoinWith('Categories', function (\Cake\ORM\Query\SelectQuery $query) use ($args) {
+                    return $query->where(['Categories.id IN' => $args['category_id']]);
+                })
+                ->group('Products.id');
+
+            return true;
+        }
+    ]);
+```
+
+Where `$args['category_id']` is an array of IDs like `['1','2']`
+
+## Optional fields
+
+Sometimes you might want to search your data based on two of three inputs in
+your form. You can use the `filterEmpty` search option to ignore any empty fields.
+
+```php
+// PostsTable::initialize()
+    $searchManager->value('author_id', [
+        'filterEmpty' => true,
+    ]);
+```
+
+Be sure to allow empty in your search form, if you're using one.
+```php
+echo $this->Form->control('author_id', ['empty' => 'Pick an author']);
+```
+
+## Empty fields
+In some cases, e.g. when posting checkboxes, the empty value is not `''` but `'0'`.
+If you want to declare certain values as empty values and prevent the URL of
+getting the query string attached for this "disabled" search field, you can set
+`emptyValues` in the component:
+
+```php
+    $this->loadComponent('Search.Search', [
+        ...
+        'emptyValues' => [
+            'my_checkbox' => '0',
+            'my_custom_field' => function ($value, array $params): bool {
+                //return true to make it behave empty;
+            },
+        ],
+    ]);
+```
+
+This is needed for the "isSearch" work as expected.
+
+## Custom filter
+
+You can create your own filter by creating a filter class under `src/Model/Filter`.
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Model\Filter;
+
+class MyCustomFilter extends \Search\Model\Filter\Base
+{
+    /**
+     * @return bool
+     */
+    public function process(): bool
+    {
+        // return false if you want to skip modifying the query based on some condition.
+
+        // Use $this->getQuery() to get query instance and modify it as needed.
+
+        return true;
+    }
+}
+```
+
+After that you can use your filter as:
+
+```php
+$this->searchManager()->add('name', 'MyCustom');
+```
+
+## More examples
+
+A lose collection of more useful examples can be found in the [wiki section](https://github.com/FriendsOfCake/search/wiki/Pastebin-of-useful-filter-rules).

@@ -1,0 +1,137 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  testsuite:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: [ '8.1', '8.2', '8.3', '8.4' ]
+        db-type: [ mysql ]
+        prefer-lowest: ['']
+        include:
+          - php-version: '8.1'
+            db-type: 'mysql'
+            prefer-lowest: 'prefer-lowest'
+
+    steps:
+
+      - name: Setup MySQL
+        if: matrix.db-type == 'mysql'
+        run: |
+          sudo service mysql start
+          mysql -h 127.0.0.1 -u root -proot -e 'CREATE DATABASE cakephp;'
+
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, intl, apcu, pdo_${{ matrix.db-type }}
+          ini-values: apc.enable_cli = 1
+          coverage: pcov
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Get date part for cache key
+        id: key-date
+        run: echo "::set-output name=date::$(date +'%Y-%m')"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ steps.key-date.outputs.date }}-${{ hashFiles('composer.json') }}
+
+      - name: composer install
+        run: |
+          if ${{ matrix.prefer-lowest == 'prefer-lowest' }}; then
+            composer update --prefer-lowest --prefer-stable
+          else
+            composer update
+          fi
+
+      - name: Run PHPUnit
+        run: |
+          export DB_URL='mysql://root:root@127.0.0.1/cakephp?init[]=SET sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"'
+          vendor/bin/phpunit --display-incomplete --display-skipped --display-warnings --display-deprecations
+
+  coding-standard:
+    name: Coding Standard
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl, apcu
+          coverage: none
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Get date part for cache key
+        id: key-date
+        run: echo "::set-output name=date::$(date +'%Y-%m')"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ steps.key-date.outputs.date }}-${{ hashFiles('composer.json') }}
+
+      - name: composer install
+        run: composer install
+
+      - name: Run PHP CodeSniffer
+        run: composer cs-check
+
+  static-analysis:
+    name: Static Analysis
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl, apcu
+          coverage: none
+          tools: cs2pr
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Get date part for cache key
+        id: key-date
+        run: echo "::set-output name=date::$(date +'%Y-%m')"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ steps.key-date.outputs.date }}-${{ hashFiles('composer.json') }}
+
+      - name: composer install
+        run: composer stan-setup
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan.phar analyse --error-format=checkstyle ./src | cs2pr
