@@ -36,7 +36,8 @@ class JournalEntriesController extends AppController
         $toperiod = $periodtbl->find()->where(function (QueryExpression $exp, Query $q) use ($to_period) {return $exp->eq('AccountingPeriods.code', $to_period);})->first();
 
         $table = $this->fetchTable('JournalEntries');
-        $query = $table->find()->where(function (QueryExpression $exp, Query $q) use ($fromperiod, $toperiod) {return $exp->between('JournalEntries.entry_date', $fromperiod->start_date, $toperiod->end_date, 'datetime');});
+        $query = $table->find()->where(function (QueryExpression $exp, Query $q) use ($fromperiod, $toperiod) {return $exp->between('JournalEntries.entry_date', $fromperiod->start_date, $toperiod->end_date, 'datetime');})
+                                ->orderBy(['JournalEntries.id' => 'DESC']);
         $contains = [];
         foreach ($table->associations() as $assoc) {
             if ($assoc->type() === 'manyToOne') {
