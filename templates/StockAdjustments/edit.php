@@ -1,3 +1,7 @@
+<?php
+        use Cake\I18n\FrozenDate;
+        use Cake\I18n\Number;
+?>
 <div class="stock_adjustments form">
     <h3>Sửa StockAdjustments: <?= h($record->id) ?></h3>
     <?= $this->Form->create($record) ?>
@@ -39,7 +43,7 @@
                 <td><?= h($r->quantity_system ?? '') ?></td>
                 <td><?= h($r->quantity_actual ?? '') ?></td>
                 <td><?= h($r->quantity_diff ?? '') ?></td>
-                <td><?= h($r->unit_price ?? '') ?></td>
+                <td><?= Number::format($r->unit_price ?? '') ?></td>
                 <td>
                     <?= $this->Form->postLink('Xóa', ['action' => 'deletedetail', $r->id], ['confirm' => 'Xóa?', 'class' => 'btn btn-sm btn-danger']) ?>
                     <?= $this->Html->link('Sửa', ['action' => 'editdetail', $r->id], ['class' => 'btn btn-sm btn-warning']) ?>

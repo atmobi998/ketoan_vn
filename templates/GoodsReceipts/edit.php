@@ -53,7 +53,7 @@
                 <td><?= h($r->id ?? '') ?></td>
                 <td><?= (!empty($r->goods_receipt_id))? $r->goods_receipt->full_name:'' ?></td>
                 <td><?= (!empty($r->product_id))? $r->product->name.' ('.$r->product->code.')':'' ?></td>
-                <td><?= Number::format($r->quantity ?? '') ?></td>
+                <td><?= h($r->quantity ?? '') ?></td>
                 <td><?= (!empty($r->unit_id))? $r->unit->name:'' ?></td>
                 <td><?= Number::format((int)$r->unit_price ?? '') ?></td>
                 <td><?= Number::format((int)$r->amount ?? '') ?></td>
