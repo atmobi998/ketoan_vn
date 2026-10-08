@@ -31,7 +31,7 @@
         <tbody>
         <?php 
             foreach ($records as $r): 
-                $description=(strlen($r->description)>40)? substr($r->description,0,40).'...':$r->description;
+                $description=(strlen($r->description)>99)? substr($r->description,0,99).'...':$r->description;
         ?>
             <tr>
                 <td><?= h($r->id ?? '') ?></td>
