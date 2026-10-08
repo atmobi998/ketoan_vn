@@ -56,3 +56,14 @@ Stack Trace:
 - ROOT/bin/cake.php:10
 - [main]:
 
+2026-10-08 15:43:19 error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table `payrolls`. in /home/streetplan/public_htdocs/old.streetplan.net/vendor/cakephp/cakephp/src/ORM/Query/SelectQuery.php on line 607
+Stack Trace:
+- CORE/src/ORM/Table.php:1702
+- APP/Service/GlPostingService.php:1047
+- APP/Command/PayrollPayBankCommand.php:61
+- CORE/src/Console/BaseCommand.php:261
+- CORE/src/Console/CommandRunner.php:451
+- CORE/src/Console/CommandRunner.php:205
+- ROOT/bin/cake.php:10
+- [main]:
+
