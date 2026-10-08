@@ -24,6 +24,7 @@
     <div class="clearfix bg-light p-3"></div>
     <?= $this->Form->button('Cập nhật', ['class' => 'btn btn-warning']) ?>
     <?= $this->Html->link('Quay lại', ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
+    <?= $this->Html->link('💸 Chi lương qua NH', ['action' => 'payViaBank', $record->id], ['class' => 'btn btn-success']);?>
     <?= $this->Form->end() ?>
 </div>
 <div class="clearfix bg-light p-3"></div>

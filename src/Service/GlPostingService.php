@@ -1017,7 +1017,200 @@ class GlPostingService
     }
 
 
-    public function postAllMissing(): array
+
+    /**
+     * TẠO CHỨNG TỪ THANH TOÁN LƯƠNG QUA NGÂN HÀNG
+     * - Tự động tạo BankPayments (UNC) từ bảng lương
+     * - Hạch toán: Nợ 334 / Có 1121
+     * - Chống trùng: reference_type = PayrollBankPayment
+     */
+    public function createPayrollBankPayment(int $payrollId, ?int $bankAccountId = null, bool $force = false): array
+    {
+        // Chống trùng: đã có UNC cho bảng lương này chưa
+        if (!$force) {
+            $bpTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('BankPayments');
+            $existing = $bpTbl->find()
+                ->where([
+                    'payee_name LIKE' => '%'.$payrollId.'%',
+                    'reason LIKE' => '%LUONG%',
+                    'status' => 'approved'
+                ])
+                ->orderBy(['id' => 'DESC'])
+                ->first();
+            // Check chuẩn hơn bằng reference_type PayrollBankPayment trong JournalEntries
+            if ($this->hasPosted('PayrollBankPayment', $payrollId)) {
+                return ['status' => 'skipped', 'message' => 'Đã tạo UNC lương cho bảng này rồi', 'bank_payment_id' => $existing?->id];
+            }
+        }
+
+        $payrollTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('Payrolls');
+        $payroll = $payrollTbl->get($payrollId, contain: ['Departments', 'AccountingPeriods']);
+
+        if ($payroll->status !== 'approved' && $payroll->status !== 'paid') {
+            return ['status' => 'error', 'message' => 'Bảng lương chưa duyệt - không thể chi'];
+        }
+
+        if ($payroll->total_net <= 0) {
+            return ['status' => 'error', 'message' => 'Tổng thực lĩnh = 0, không cần chi'];
+        }
+
+        // Lấy tài khoản ngân hàng
+        $bankAccTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('BankAccounts');
+        if ($bankAccountId) {
+            $bankAcc = $bankAccTbl->get($bankAccountId);
+        } else {
+            $bankAcc = $bankAccTbl->find()->where(['is_active' => true])->orderBy(['id' => 'ASC'])->first();
+            if (!$bankAcc) {
+                $bankAcc = $bankAccTbl->find()->orderBy(['id' => 'ASC'])->first();
+            }
+        }
+
+        if (!$bankAcc) {
+            return ['status' => 'error', 'message' => 'Chưa có tài khoản ngân hàng (bank_accounts)'];
+        }
+
+        // TK 334 phải trả
+        $acc334 = $this->getAccountIdByCode('3341') ?? $this->getAccountIdByCode('334');
+        if (!$acc334) {
+            return ['status' => 'error', 'message' => 'Thiếu TK 334/3341'];
+        }
+
+        $dateStr = sprintf('%04d-%02d-%02d', $payroll->payroll_year, $payroll->payroll_month, 28);
+        $periodId = $this->getPeriodIdByDate($dateStr);
+        $entryNumber = $this->genEntryNumber('BN-LUONG-'.$payrollId, $dateStr);
+
+        $bpTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('BankPayments');
+        $conn = $bpTbl->getConnection();
+
+        try {
+            return $conn->transactional(function () use ($bpTbl, $payroll, $bankAcc, $acc334, $dateStr, $periodId, $entryNumber, $payrollId) {
+                $bp = $bpTbl->newEmptyEntity();
+                $bp->voucher_number = $entryNumber;
+                $bp->voucher_date = new \Cake\I18n\FrozenDate($dateStr);
+                $bp->accounting_date = new \Cake\I18n\FrozenDate($dateStr);
+                $deptName = $payroll->department->name ?? 'P'.$payroll->department_id;
+                $bp->payee_name = sprintf('CB-NV %s - T%02d/%04d', $deptName, $payroll->payroll_month, $payroll->payroll_year);
+                $bp->reason = sprintf('Chi lương %s - %s (%d NV) - Net %.0f VND - Ref Payroll#%d', 
+                    $payroll->payroll_code,
+                    $deptName,
+                    $payroll->total_employees,
+                    $payroll->total_net,
+                    $payrollId
+                );
+                $bp->bank_account_id = $bankAcc->id;
+                $bp->chart_of_account_id = $acc334; // Nợ 334
+                $bp->amount = $payroll->total_net;
+                $bp->amount_vnd = $payroll->total_net;
+                $bp->exchange_rate = 1;
+                $bp->status = 'approved';
+                $bp->created_by = 1;
+                $bp->accounting_period_id = $periodId;
+
+                $bpTbl->saveOrFail($bp);
+
+                // Hạch toán ngay: Nợ 334 / Có 112
+                $postResult = $this->postBankPayment($bp->id, true);
+
+                // Đánh dấu PayrollBankPayment để chống trùng
+                if ($postResult['status'] === 'ok') {
+                    $jeTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('JournalEntries');
+                    $je = $jeTbl->get($postResult['entry_id']);
+                    $je->reference_type = 'PayrollBankPayment';
+                    $je->reference_id = (string)$payrollId;
+                    $je->description = $bp->reason . ' | ' . $je->description;
+                    $jeTbl->save($je);
+                }
+
+                return [
+                    'status' => $postResult['status'],
+                    'message' => 'Đã tạo UNC lương qua ngân hàng',
+                    'bank_payment_id' => $bp->id,
+                    'voucher_number' => $bp->voucher_number,
+                    'entry_id' => $postResult['entry_id'] ?? null,
+                    'entry_number' => $postResult['entry_number'] ?? null,
+                    'amount' => $bp->amount_vnd
+                ];
+            });
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Thanh toán lương hàng loạt theo tháng qua ngân hàng
+     * Tạo 1 UNC cho mỗi phòng ban hoặc gộp 1 UNC cho cả tháng
+     */
+    public function createPayrollMonthBankPayment(int $month, int $year, ?int $bankAccountId = null, bool $groupByDepartment = true, bool $force = false): array
+    {
+        $payrollTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('Payrolls');
+        $payrolls = $payrollTbl->find()
+            ->where(['payroll_month' => $month, 'payroll_year' => $year, 'status IN' => ['approved','paid']])
+            ->all();
+
+        if ($payrolls->isEmpty()) {
+            return ['status' => 'error', 'message' => "Không có bảng lương T$month/$year"];
+        }
+
+        $results = [];
+        if ($groupByDepartment) {
+            // Mỗi phòng ban 1 UNC
+            foreach ($payrolls as $p) {
+                $results[] = [
+                    'payroll_id' => $p->id,
+                    'code' => $p->payroll_code,
+                    'result' => $this->createPayrollBankPayment($p->id, $bankAccountId, $force)
+                ];
+            }
+        } else {
+            // Gộp cả tháng thành 1 UNC duy nhất
+            $totalNet = $payrolls->sumOf('total_net');
+            if ($totalNet <= 0) {
+                return ['status' => 'error', 'message' => 'Tổng thực lĩnh = 0'];
+            }
+            
+            $bankAccTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('BankAccounts');
+            $bankAcc = $bankAccountId ? $bankAccTbl->get($bankAccountId) : $bankAccTbl->find()->orderBy(['id' => 'ASC'])->first();
+            
+            $dateStr = sprintf('%04d-%02d-%02d', $year, $month, 28);
+            $periodId = $this->getPeriodIdByDate($dateStr);
+            $entryNumber = $this->genEntryNumber('BN-LUONG', $dateStr);
+            $acc334 = $this->getAccountIdByCode('3341') ?? $this->getAccountIdByCode('334');
+            
+            $bpTbl = \Cake\ORM\TableRegistry::getTableLocator()->get('BankPayments');
+            $bp = $bpTbl->newEmptyEntity();
+            $bp->voucher_number = $entryNumber;
+            $bp->voucher_date = new \Cake\I18n\FrozenDate($dateStr);
+            $bp->accounting_date = new \Cake\I18n\FrozenDate($dateStr);
+            $bp->payee_name = sprintf('Toàn bộ CB-NV - Lương T%02d/%04d', $month, $year);
+            $bp->reason = sprintf('Chi lương gộp T%02d/%04d - %d bảng lương - Tổng Net %.0f VND', $month, $year, $payrolls->count(), $totalNet);
+            $bp->bank_account_id = $bankAcc->id;
+            $bp->chart_of_account_id = $acc334;
+            $bp->amount = $totalNet;
+            $bp->amount_vnd = $totalNet;
+            $bp->status = 'approved';
+            $bp->created_by = 1;
+            $bp->accounting_period_id = $periodId;
+            $bpTbl->saveOrFail($bp);
+            
+            $postResult = $this->postBankPayment($bp->id, true);
+            $results[] = [
+                'payroll_id' => 'ALL',
+                'code' => "T$month/$year",
+                'result' => $postResult
+            ];
+        }
+
+        $success = count(array_filter($results, fn($r) => ($r['result']['status'] ?? '') === 'ok'));
+        return [
+            'status' => 'ok',
+            'message' => "Đã tạo $success/".count($results)." UNC lương T$month/$year",
+            'total_amount' => $payrolls->sumOf('total_net'),
+            'details' => $results
+        ];
+    }
+
+
+        public function postAllMissing(): array
     {
         $results = [];
 

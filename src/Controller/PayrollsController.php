@@ -44,6 +44,94 @@ class PayrollsController extends AppController
         return $result;
 	}
 
+    /**
+     * THANH TOÁN LƯƠNG QUA NGÂN HÀNG - tạo UNC tự động
+     * Route: /payrolls/pay-via-bank/{id}
+     */
+    public function payViaBank($id = null)
+    {
+        $this->request->allowMethod(['post', 'put', 'get']);
+        $table = $this->fetchTable('Payrolls');
+        $record = $table->get($id);
+        
+        $bankAccountId = $this->request->getQuery('bank_account_id') ?? $this->request->getData('bank_account_id');
+        
+        $gl = new \App\Service\GlPostingService();
+        $result = $gl->createPayrollBankPayment((int)$id, $bankAccountId ? (int)$bankAccountId : null);
+        
+        if ($result['status'] === 'ok') {
+            $this->Flash->success(sprintf('Đã tạo UNC %s - %s VND - Bút toán %s', 
+                $result['voucher_number'], 
+                number_format($result['amount']),
+                $result['entry_number']
+            ));
+            // Cập nhật trạng thái bảng lương thành paid
+            $record->status = 'paid';
+            $table->save($record);
+        } elseif ($result['status'] === 'skipped') {
+            $this->Flash->warning($result['message']);
+        } else {
+            $this->Flash->error('Lỗi: '.$result['message']);
+        }
+        
+        return $this->redirect(['action' => 'edit', $id]);
+    }
+
+    /**
+     * THANH TOÁN LƯƠNG QUA NGÂN HÀNG - tạo UNC tự động
+     * Route: /payrolls/pay-via-bank/{id}
+     */
+    public function payViaBankIdx($id = null)
+    {
+        $this->request->allowMethod(['post', 'put', 'get']);
+        $table = $this->fetchTable('Payrolls');
+        $record = $table->get($id);
+        
+        $bankAccountId = $this->request->getQuery('bank_account_id') ?? $this->request->getData('bank_account_id');
+        
+        $gl = new \App\Service\GlPostingService();
+        $result = $gl->createPayrollBankPayment((int)$id, $bankAccountId ? (int)$bankAccountId : null);
+        
+        if ($result['status'] === 'ok') {
+            $this->Flash->success(sprintf('Đã tạo UNC %s - %s VND - Bút toán %s', 
+                $result['voucher_number'], 
+                number_format($result['amount']),
+                $result['entry_number']
+            ));
+            // Cập nhật trạng thái bảng lương thành paid
+            $record->status = 'paid';
+            $table->save($record);
+        } elseif ($result['status'] === 'skipped') {
+            $this->Flash->warning($result['message']);
+        } else {
+            $this->Flash->error('Lỗi: '.$result['message']);
+        }
+        
+        return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * THANH TOÁN CẢ THÁNG QUA NGÂN HÀNG
+     * Route: /payrolls/pay-month-via-bank?month=9&year=2026
+     */
+    public function payMonthViaBank()
+    {
+        $month = (int)($this->request->getQuery('month') ?? date('n'));
+        $year = (int)($this->request->getQuery('year') ?? date('Y'));
+        $bankAccountId = $this->request->getQuery('bank_account_id');
+        $groupByDept = $this->request->getQuery('group') !== '0'; // default group theo phòng ban
+        
+        $gl = new \App\Service\GlPostingService();
+        $result = $gl->createPayrollMonthBankPayment($month, $year, $bankAccountId ? (int)$bankAccountId : null, $groupByDept);
+        
+        if ($result['status'] === 'ok') {
+            $this->Flash->success($result['message'] . ' - Tổng: ' . number_format($result['total_amount']) . ' VND');
+        } else {
+            $this->Flash->error($result['message']);
+        }
+        
+        return $this->redirect(['action' => 'index', '?' => ['from_period' => sprintf('%04d-%02d', $year, $month), 'to_period' => sprintf('%04d-%02d', $year, $month)]]);
+    }
 
     public function index()
     {

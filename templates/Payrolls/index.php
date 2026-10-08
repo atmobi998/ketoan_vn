@@ -62,6 +62,7 @@
                 <td>
                     <?= $this->Form->postLink('Xóa', ['action' => 'delete', $r->id], ['confirm' => 'Xóa?', 'class' => 'btn btn-sm btn-danger']) ?>
                     <?= $this->Html->link('In', ['action' => 'view', $r->id], ['class' => 'btn btn-sm btn-success','target'=>'_new']) ?>
+                    <?= $this->Html->link('Chi qua NH', ['action' => 'payViaBankIdx', $r->id], ['class' => 'btn btn-success']);?>
                     <?= $this->Html->link('Sửa', ['action' => 'edit', $r->id], ['class' => 'btn btn-sm btn-warning']) ?>
                 </td>
             </tr>

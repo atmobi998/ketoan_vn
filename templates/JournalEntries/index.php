@@ -29,13 +29,16 @@
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($records as $r): ?>
+        <?php 
+            foreach ($records as $r): 
+                $description=(strlen($r->description)>40)? substr($r->description,0,40).'...':$r->description;
+        ?>
             <tr>
                 <td><?= h($r->id ?? '') ?></td>
                 <td><?= h($r->entry_number ?? '') ?></td>
                 <td><?= h($r->entry_date ?? '') ?></td>
                 <td><?= h($r->accounting_date ?? '') ?></td>
-                <td><?= h($r->description ?? '') ?></td>
+                <td><?= h($description ?? '') ?></td>
                 <td><?= Number::format($r->total_debit ?? '') ?></td>
                 <td><?= Number::format($r->total_credit ?? '') ?></td>
                 <td>
