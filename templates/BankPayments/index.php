@@ -5,7 +5,7 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <td colspan="8">
+                <td colspan="12">
 <?php
         use Cake\I18n\FrozenDate;
         use Cake\I18n\Number;
@@ -24,6 +24,10 @@
                 <th>ngày hạch toán</th>
                 <th>tên người thụ hưởng</th>
                 <th>lý do</th>
+                <th>đơn vị tiền tệ</th>
+                <th>tỉ giá hối đoái</th>
+                <th>số tiền</th>
+                <th>số tiền VNĐ</th>
                 <th>tài khoản ngân hàng</th>
                 <th>Tác vụ</th>
         </tr></thead>
@@ -36,6 +40,10 @@
                 <td><?= h($r->accounting_date ?? '') ?></td>
                 <td><?= h($r->payee_name ?? '') ?></td>
                 <td><?= h($r->reason ?? '') ?></td>
+                <td><?= (!empty($r->currency_id))? $r->currency->code:'' ?></td>
+                <td><?= h($r->exchange_rate ?? '') ?></td>
+                <td><?= Number::format($r->amount ?? '') ?></td>
+                <td><?= Number::format($r->amount_vnd ?? '') ?></td>
                 <td><?= (!empty($r->bank_account_id))? $r->bank_account->account_number.' ('.$r->bank_account->bank_name.')':'' ?></td>
                 <td>
                     <?= $this->Form->postLink('Xóa', ['action' => 'delete', $r->id], ['confirm' => 'Xóa?', 'class' => 'btn btn-sm btn-danger']) ?>

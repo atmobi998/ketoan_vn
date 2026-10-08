@@ -1054,6 +1054,7 @@ class GlPostingService
                 $bp->reason = sprintf('Chi lương %s - %s (%d NV) - Net %.0f VND - Ref Payroll#%d', $payroll->payroll_code, $deptName, $payroll->total_employees, $payroll->total_net, $payrollId);
                 $bp->bank_account_id = $bankAcc->id;
                 $bp->chart_of_account_id = $acc334;
+                $bp->currency_id = 1;
                 $bp->amount = $payroll->total_net;
                 $bp->amount_vnd = $payroll->total_net;
                 $bp->exchange_rate = 1;
