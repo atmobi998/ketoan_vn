@@ -244,6 +244,10 @@ MIT License - xem file [LICENSE](LICENSE)
 
 **v347.0 (2026-10-08)**
 - thêm tính năng post GL cho chi lương qua NH
+```
+bin/cake post_missing_gl_entries
+bin/cake payroll_pay_bank --bank_account_id=1 --year=2026 --month=9
+```
 
 **v331.0 (2026-10-07)**
 - Thêm hạch toán tự động bảng lương (Payroll): Nợ 622/627/641/642 / Có 334, 3383, 3384, 3386, 3335
