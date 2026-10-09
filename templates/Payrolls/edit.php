@@ -1,7 +1,6 @@
 <?php
         use Cake\I18n\FrozenDate;
         use Cake\I18n\Number;
-
 ?>
 <div class="payrolls form">
     <h3>Sửa Payrolls: <?= h($record->id) ?>
