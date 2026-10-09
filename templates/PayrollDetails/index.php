@@ -7,7 +7,17 @@
     <a href="<?= $this->Url->build(['controller' => 'PayrollDetails','action' => 'exportExcel']) ?>" class="btn btn-success btn-sm float-end me-2"><i class="fa fa-file-excel"></i> Excel</a>
     <a href="<?= $this->Url->build(['controller' => 'PayrollDetails','action' => 'exportPdf']) ?>" class="btn btn-danger btn-sm float-end me-2"><i class="fa fa-file-pdf"></i> PDF</a></h3>
     <table class="table table-bordered table-striped">
-        <thead><tr>
+        <thead>
+            <tr>
+                <td colspan="12">
+<?php
+        $start = FrozenDate::today();
+        $end = FrozenDate::today()->subDays(365);
+        echo $this->Form->control('from_period', ['options' => $options ?? [], 'value' => $from_period, 'label' => 'Period', 'empty' => '-- Chọn --', 'OnChange' => 'from_period_chg();', 'class' => 'form-control']);
+?>
+                </td>
+            </tr>
+            <tr>
                 <th>Mã ID</th>
                 <th>mã bảng lương</th>
                 <th>người lao động</th>
@@ -36,8 +46,8 @@
                 <td><?= Number::format((int)$r->tax_deduction ?? '') ?></td>
                 <td><?= Number::format((int)$r->other_deduction ?? '') ?></td>
                 <td>
-                    <?= $this->Form->postLink('Xóa', ['action' => 'deletedetail', $r->id], ['confirm' => 'Xóa?', 'class' => 'btn btn-sm btn-danger']) ?>
-                    <?= $this->Html->link('Sửa', ['action' => 'editdetail', $r->id], ['class' => 'btn btn-sm btn-warning']) ?>
+                    <?= $this->Form->postLink('Xóa', ['action' => 'delete', $r->id], ['confirm' => 'Xóa?', 'class' => 'btn btn-sm btn-danger']) ?>
+                    <?= $this->Html->link('Sửa', ['action' => 'edit', $r->id], ['class' => 'btn btn-sm btn-warning']) ?>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -45,3 +55,8 @@
     </table>
     <div class="paginator"><?= $this->Paginator->numbers() ?></div>
 </div>
+<script>
+function from_period_chg() {
+    window.location.href = '/payroll_details?from_period='+$('#from-period').val()+'&to_period='+$('#to-period').val()+'&time='+$.now();
+}
+</script>
